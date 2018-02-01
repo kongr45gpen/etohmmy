@@ -1,17 +1,15 @@
 import Vue from 'vue';
+import Lessons from '../data/lessons.json'
+
 
 console.log("Welcome to BETHMMY.");
 
 var app = new Vue({
     el: '#app',
     data: {
-        message: 'Hello Vue!'
+        semesters: Lessons["semesters"]
     }
 })
 
-var app2 = new Vue({
-    el: '#app-2',
-    data: {
-        message: 'You loaded this page on ' + new Date().toLocaleString()
-    }
-})
+console.log(Lessons)
+window.lessons = Lessons

@@ -8,9 +8,10 @@
     "gulp-plumber": "latest",
     "gulp-sass": "latest",
     "gulp-uglify": "latest",
-    "gulp-util": "latest",
+    "gulp-yaml": "latest",
     "vue": "latest",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {}
 }

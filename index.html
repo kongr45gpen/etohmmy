@@ -28,13 +28,14 @@
         Ο Βοηθός αυτός θα σας βοηθήσει να επιλέξετε τομέα ΗΜΜΥ.
     </div>
     <div id="app">
-        {{ message }}
-    </div>
-    <div id="app-2">
-      <span v-bind:title="message">
-        Hover your mouse over me for a few seconds
-        to see my dynamically bound title!
-      </span>
+        <div v-for="(lessons, semester) in semesters">
+            <h3>Εξάμηνο {{ semester }}</h3>
+            <ul>
+                <li v-for="lesson in lessons">
+                    {{ lesson.name }}
+                </li>
+            </ul>
+        </div>
     </div>
 </main><!-- /.container -->
 

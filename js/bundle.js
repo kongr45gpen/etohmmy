@@ -287,6 +287,10 @@ process.umask = function() { return 0; };
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_lessons_json__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_lessons_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__data_lessons_json__);
+
+
 
 
 console.log("Welcome to BETHMMY.");
@@ -294,16 +298,12 @@ console.log("Welcome to BETHMMY.");
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
     el: '#app',
     data: {
-        message: 'Hello Vue!'
+        semesters: __WEBPACK_IMPORTED_MODULE_1__data_lessons_json___default.a["semesters"]
     }
 })
 
-var app2 = new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
-    el: '#app-2',
-    data: {
-        message: 'You loaded this page on ' + new Date().toLocaleString()
-    }
-})
+console.log(__WEBPACK_IMPORTED_MODULE_1__data_lessons_json___default.a)
+window.lessons = __WEBPACK_IMPORTED_MODULE_1__data_lessons_json___default.a
 
 
 /***/ }),
@@ -11382,6 +11382,12 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(1)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = {"semesters":{"6":[{"name":"Συστήματα Αυτομάτου Ελέγχου 2"},{"name":"Ηλεκτρονική 3"},{"name":"Ρομποτική"},{"name":"Ψηφιακές Τηλεπικοινωνίες"}],"7":[{"name":"Χρονοσειρές"},{"name":"Υψηλές Τάσεις 2"},{"name":"Ψηφιακή Επεξεργασία Σήματος"},{"name":"Ηλεκτρακουστική 2"}],"9":[{"name":"Σχεδίαση Συστημάτων VLSI"}]}}
 
 /***/ })
 /******/ ]);
