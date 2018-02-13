@@ -112,7 +112,7 @@ semesters:
       sector: el
       status:
         en: EE
-        el: E
+        el: Y
         tel: EE
     -
       name: Ρομποτική
@@ -183,15 +183,6 @@ semesters:
         en: EE
         el: EE
         tel: Y
-  7:
-    -
-      name: Χρονοσειρές
-    -
-      name: Υψηλές Τάσεις 2
-    -
-      name: Ψηφιακή Επεξεργασία Σήματος
-    -
-      name: Ηλεκτρακουστική 2
-  9:
-    -
-      name: Σχεδίαση Συστημάτων VLSI
+  #7:
+  #9:
+

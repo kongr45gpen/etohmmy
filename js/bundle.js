@@ -292,14 +292,101 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+const Max_Lessons = 7;
+const Free_Lessons = 1;
 
 console.log("Welcome to BETHMMY.");
+
+Array.prototype.clone = function(callback, thisArg) {
+    return this.slice(0);
+}
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
     el: '#app',
     data: {
         semesters: __WEBPACK_IMPORTED_MODULE_1__data_lessons_json___default.a["semesters"],
+        sectors: __WEBPACK_IMPORTED_MODULE_1__data_lessons_json___default.a["sectors"]
     },
+    computed: {
+        results: function () {
+            var result = [];
+
+            for (var sem in this.semesters) {
+                // Initialise the empty array for the semester
+                result[sem] = [];
+
+                // Clone the list of lessons
+                var initialLessons = this.semesters[sem].clone();
+
+                // Sort the lessons based on preference
+                initialLessons.sort(function (a, b) {
+                    return parseFloat(a["satisfaction"]) < parseFloat(b["satisfaction"]);
+                })
+
+                for (var sec in __WEBPACK_IMPORTED_MODULE_1__data_lessons_json___default.a["sectors"]) {
+                    result[sem][sec] = [];
+
+                    // Copy the lessons array so we can remove elements at will
+                    var lessons = initialLessons.clone();
+
+                    // Step 1: Get the necessary lessons
+                    var i = lessons.length;
+                    while (i-- > 0) {
+                        var lesson = lessons[i];
+
+                        if (lesson.status[sec] == "Y") {
+                            // Add the lesson to the list
+                            result[sem][sec].push(lesson);
+
+                            // Remove the lesson
+                            lessons.splice(i, 1);
+                        }
+                    }
+
+                    // Step 2: Iterate from best to worst lesson
+                    var lessonsLeft = Max_Lessons - result[sem][sec].length;
+                    var freeLeft = Free_Lessons;
+                    // Lessons are sorted from awesome to terrible
+                    for (var les in lessons) {
+                        // Stop if we have no lessons left
+                        if (lessonsLeft <= 0) break;
+
+                        var lesson = lessons[les];
+
+                        if (lesson.status[sec] == "EE") {
+                            // No more free lessons left
+                            if(freeLeft <= 0) continue;
+
+                            freeLeft--;
+                        }
+
+                        result[sem][sec].push(lesson);
+                        lessonsLeft--;
+                    }
+
+                    // Step 3: Calculate statistics
+                    var satisfaction = 0;
+                    for (var les in result[sem][sec]) {
+                        var value = parseFloat(result[sem][sec][les]["satisfaction"]);
+
+                        if (!isNaN(value)) satisfaction += value;
+                    }
+                    result[sem][sec]["satisfaction"] = satisfaction;
+                }
+
+                // Calculate statistics
+                var maxSector = null;
+                for (var sec in result[sem]) {
+                    if (maxSector === null || result[sem][sec]["satisfaction"] > result[sem][maxSector]["satisfaction"]) {
+                        maxSector = sec;
+                    }
+                }
+                result[sem]["maxSector"] = maxSector;
+            }
+
+            return result;
+        }
+    }
 })
 
 // Export values so they can be accessed in the developer console
@@ -11388,7 +11475,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = {"sectors":{"en":{"short_name":"Ενέργεια","name":"Τομέας Ενέργειας"},"el":{"short_name":"Ηλεκτρονική","name":"Τομέας Ηλεκτρονικής και Υπολογιστών"},"tel":{"short_name":"Τηλεπικοινωνίες","name":"Τομέας Τηλεπικοινωνιών"}},"semesters":{"6":[{"name":"Συστήματα Αυτομάτου Ελέγχου 2","qa":"https://qa.auth.gr/el/class/1/600111363","sector":"el","status":{"en":"Y","el":"Y","tel":"Y"}},{"name":"Ηλεκτρικές Μετρήσεις 2","qa":"https://qa.auth.gr/el/class/1/600111368","sector":"el","status":{"en":"E","el":"Y","tel":"E"}},{"name":"Μετάδοση Θερμότητας","qa":"https://qa.auth.gr/el/class/1/600111370","sector":"en","status":{"en":"Y","el":"E","tel":"E"}},{"name":"Οπτική 1","qa":"https://qa.auth.gr/el/class/1/600111374","sector":"tel","status":{"en":"EE","el":"EE","tel":"EE"}},{"name":"Ακουστική 1","qa":"https://qa.auth.gr/el/class/1/600111375","sector":"tel","status":{"en":"EE","el":"EE","tel":"E"}},{"name":"Ηλεκτρακουστική 1","qa":"https://qa.auth.gr/el/class/1/600111378","sector":"tel","status":{"en":"E","el":"E","tel":"E"}},{"name":"Εισαγωγή στις Εφαρμογές της Πυρηνικής Τεχνολογίας","qa":"https://qa.auth.gr/el/class/1/600111386","sector":"en","status":{"en":"E","el":"EE","tel":"EE"}},{"name":"Ημιαγωγά Υλικά: Θεωρία - Διατάξεις","qa":"https://qa.auth.gr/el/class/1/600111387","sector":"en","status":{"en":"E","el":"EE","tel":"EE"}},{"name":"Κβαντική Φυσική","qa":"https://qa.auth.gr/el/class/1/600111388","sector":null,"status":{"en":"EE","el":"EE","tel":"EE"}},{"name":"Συστήματα Ηλεκτρικής Ενέργειας 1","qa":"https://qa.auth.gr/el/class/1/600111392","sector":"en","status":{"en":"Y","el":"EE","tel":"EE"}},{"name":"Υψηλές Τάσεις 1","qa":"https://qa.auth.gr/el/class/1/600111398","sector":"en","status":{"en":"Y","el":"EE","tel":"EE"}},{"name":"Ηλεκτρονική 3","qa":"https://qa.auth.gr/el/class/1/600111413","sector":"el","status":{"en":"E","el":"Y","tel":"Y"}},{"name":"Ψηφιακά Συστήματα 2","qa":"https://qa.auth.gr/el/class/1/600111415","sector":"el","status":{"en":"EE","el":"E","tel":"EE"}},{"name":"Ρομποτική","qa":"https://qa.auth.gr/el/class/1/600111420","sector":"el","status":{"en":"E","el":"E","tel":"EE"}},{"name":"Διάδοση Η/Μ Κύματος 2","qa":"https://qa.auth.gr/el/class/1/600111429","sector":"tel","status":{"en":"EE","el":"EE","tel":"Y"}},{"name":"Τεχνολογία Λογισμικού","qa":"https://qa.auth.gr/el/class/1/600111440","sector":"el","status":{"tel":"E"}},{"name":"Τεχνικές Βελτιστοποίησης","qa":"https://qa.auth.gr/el/class/1/600111447","sector":"el","status":{"en":"E","el":"E","tel":"EE"}},{"name":"Εφαρμοσμένα Μαθηματικά 2","qa":"https://qa.auth.gr/el/class/1/600111496","sector":"tel","status":{"en":"EE","el":"EE","tel":"E"}},{"name":"Διακριτά Μαθηματικά","qa":"https://qa.auth.gr/el/class/1/600111461","sector":"el","status":{"en":"EE","el":"E","tel":"EE"}},{"name":"Επιχειρησιακή Έρευνα","qa":"https://qa.auth.gr/el/class/1/600111467","sector":"el","status":{"en":"E","el":"E","tel":"EE"}},{"name":"Ανάλυση & Σχεδιασμός Αλγορίθμων","qa":"https://qa.auth.gr/el/class/1/600111483","sector":"el","status":{"en":"EE","el":"E","tel":"E"}},{"name":"Ψηφιακές Τηλεπικοινωνίες 1","sector":"tel","qa":"https://qa.auth.gr/el/class/1/600111486","status":{"en":"EE","el":"EE","tel":"Y"}}],"7":[{"name":"Χρονοσειρές"},{"name":"Υψηλές Τάσεις 2"},{"name":"Ψηφιακή Επεξεργασία Σήματος"},{"name":"Ηλεκτρακουστική 2"}],"9":[{"name":"Σχεδίαση Συστημάτων VLSI"}]}}
+module.exports = {"sectors":{"en":{"short_name":"Ενέργεια","name":"Τομέας Ενέργειας"},"el":{"short_name":"Ηλεκτρονική","name":"Τομέας Ηλεκτρονικής και Υπολογιστών"},"tel":{"short_name":"Τηλεπικοινωνίες","name":"Τομέας Τηλεπικοινωνιών"}},"semesters":{"6":[{"name":"Συστήματα Αυτομάτου Ελέγχου 2","qa":"https://qa.auth.gr/el/class/1/600111363","sector":"el","status":{"en":"Y","el":"Y","tel":"Y"}},{"name":"Ηλεκτρικές Μετρήσεις 2","qa":"https://qa.auth.gr/el/class/1/600111368","sector":"el","status":{"en":"E","el":"Y","tel":"E"}},{"name":"Μετάδοση Θερμότητας","qa":"https://qa.auth.gr/el/class/1/600111370","sector":"en","status":{"en":"Y","el":"E","tel":"E"}},{"name":"Οπτική 1","qa":"https://qa.auth.gr/el/class/1/600111374","sector":"tel","status":{"en":"EE","el":"EE","tel":"EE"}},{"name":"Ακουστική 1","qa":"https://qa.auth.gr/el/class/1/600111375","sector":"tel","status":{"en":"EE","el":"EE","tel":"E"}},{"name":"Ηλεκτρακουστική 1","qa":"https://qa.auth.gr/el/class/1/600111378","sector":"tel","status":{"en":"E","el":"E","tel":"E"}},{"name":"Εισαγωγή στις Εφαρμογές της Πυρηνικής Τεχνολογίας","qa":"https://qa.auth.gr/el/class/1/600111386","sector":"en","status":{"en":"E","el":"EE","tel":"EE"}},{"name":"Ημιαγωγά Υλικά: Θεωρία - Διατάξεις","qa":"https://qa.auth.gr/el/class/1/600111387","sector":"en","status":{"en":"E","el":"EE","tel":"EE"}},{"name":"Κβαντική Φυσική","qa":"https://qa.auth.gr/el/class/1/600111388","sector":null,"status":{"en":"EE","el":"EE","tel":"EE"}},{"name":"Συστήματα Ηλεκτρικής Ενέργειας 1","qa":"https://qa.auth.gr/el/class/1/600111392","sector":"en","status":{"en":"Y","el":"EE","tel":"EE"}},{"name":"Υψηλές Τάσεις 1","qa":"https://qa.auth.gr/el/class/1/600111398","sector":"en","status":{"en":"Y","el":"EE","tel":"EE"}},{"name":"Ηλεκτρονική 3","qa":"https://qa.auth.gr/el/class/1/600111413","sector":"el","status":{"en":"E","el":"Y","tel":"Y"}},{"name":"Ψηφιακά Συστήματα 2","qa":"https://qa.auth.gr/el/class/1/600111415","sector":"el","status":{"en":"EE","el":"Y","tel":"EE"}},{"name":"Ρομποτική","qa":"https://qa.auth.gr/el/class/1/600111420","sector":"el","status":{"en":"E","el":"E","tel":"EE"}},{"name":"Διάδοση Η/Μ Κύματος 2","qa":"https://qa.auth.gr/el/class/1/600111429","sector":"tel","status":{"en":"EE","el":"EE","tel":"Y"}},{"name":"Τεχνολογία Λογισμικού","qa":"https://qa.auth.gr/el/class/1/600111440","sector":"el","status":{"tel":"E"}},{"name":"Τεχνικές Βελτιστοποίησης","qa":"https://qa.auth.gr/el/class/1/600111447","sector":"el","status":{"en":"E","el":"E","tel":"EE"}},{"name":"Εφαρμοσμένα Μαθηματικά 2","qa":"https://qa.auth.gr/el/class/1/600111496","sector":"tel","status":{"en":"EE","el":"EE","tel":"E"}},{"name":"Διακριτά Μαθηματικά","qa":"https://qa.auth.gr/el/class/1/600111461","sector":"el","status":{"en":"EE","el":"E","tel":"EE"}},{"name":"Επιχειρησιακή Έρευνα","qa":"https://qa.auth.gr/el/class/1/600111467","sector":"el","status":{"en":"E","el":"E","tel":"EE"}},{"name":"Ανάλυση & Σχεδιασμός Αλγορίθμων","qa":"https://qa.auth.gr/el/class/1/600111483","sector":"el","status":{"en":"EE","el":"E","tel":"E"}},{"name":"Ψηφιακές Τηλεπικοινωνίες 1","sector":"tel","qa":"https://qa.auth.gr/el/class/1/600111486","status":{"en":"EE","el":"EE","tel":"Y"}}]}}
 
 /***/ })
 /******/ ]);
