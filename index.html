@@ -34,7 +34,7 @@
                     <h3>Εξάμηνο {{ semester }}</h3>
                     <ul>
                         <li v-for="lesson in lessons">
-                            <input type="range" min="-10" max="10" step="0.1" data-value="0" v-model="lesson.satisfaction"> {{ lesson.name }}
+                            <input type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction"> {{ lesson.name }}
                             <p>
                                 <small>Satisfaction index: <strong>{{ lesson.satisfaction }}</strong></small>
                             </p>
@@ -64,7 +64,7 @@
 
                             </div>
                             <div class="card-footer">
-                                <small class="text-muted">Ευχαρίστηση Τομέα:</small> <b>{{ results[semester][key].satisfaction }}</b>
+                                <small class="text-muted">Ευχαρίστηση Τομέα:</small> <b>{{ results[semester][key].satisfaction.toFixed(1) }}</b>
                             </div>
                         </div>
                     <!--</div>-->

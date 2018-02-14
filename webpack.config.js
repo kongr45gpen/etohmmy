@@ -8,7 +8,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+            'vue$': 'vue/dist/vue.esm.js',
+            'underscore$': 'webpack/underscore.js'
         }
     }
 };

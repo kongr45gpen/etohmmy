@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import _ from '../node_modules/underscore/underscore.js';
 import Lessons from '../data/lessons.json'
 
 const Max_Lessons = 7;
@@ -6,9 +7,12 @@ const Free_Lessons = 1;
 
 console.log("Welcome to BETHMMY.");
 
-Array.prototype.clone = function(callback, thisArg) {
-    return this.slice(0);
-}
+// Initialise vue variables
+_.each(Lessons["semesters"], function(s) {
+    _.each(s, function(l) {
+        l["satisfaction"] = 0.0;
+    })
+});
 
 var app = new Vue({
     el: '#app',
@@ -25,18 +29,15 @@ var app = new Vue({
                 result[sem] = [];
 
                 // Clone the list of lessons
-                var initialLessons = this.semesters[sem].clone();
-
-                // Sort the lessons based on preference
-                initialLessons.sort(function (a, b) {
-                    return parseFloat(a["satisfaction"]) < parseFloat(b["satisfaction"]);
-                })
+                var initialLessons = _.sortBy(this.semesters[sem], function(l) {
+                    return -l["satisfaction"];
+                });
 
                 for (var sec in Lessons["sectors"]) {
                     result[sem][sec] = [];
 
                     // Copy the lessons array so we can remove elements at will
-                    var lessons = initialLessons.clone();
+                    var lessons = _.clone(initialLessons);
 
                     // Step 1: Get the necessary lessons
                     var i = lessons.length;
@@ -51,6 +52,11 @@ var app = new Vue({
                             lessons.splice(i, 1);
                         }
                     }
+
+                    // Necessary lessons should be sorted alphabetically
+                    result[sem][sec].sort(function(a, b) {
+                        return a.name < b.name;
+                    });
 
                     // Step 2: Iterate from best to worst lesson
                     var lessonsLeft = Max_Lessons - result[sem][sec].length;
@@ -74,13 +80,9 @@ var app = new Vue({
                     }
 
                     // Step 3: Calculate statistics
-                    var satisfaction = 0;
-                    for (var les in result[sem][sec]) {
-                        var value = parseFloat(result[sem][sec][les]["satisfaction"]);
-
-                        if (!isNaN(value)) satisfaction += value;
-                    }
-                    result[sem][sec]["satisfaction"] = satisfaction;
+                    result[sem][sec]["satisfaction"] = _.reduce(result[sem][sec], function (value, lesson) {
+                        return value + lesson["satisfaction"]
+                    }, 0);
                 }
 
                 // Calculate statistics
