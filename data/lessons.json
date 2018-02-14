@@ -101,7 +101,7 @@
       {
         "name": "Κβαντική Φυσική",
         "qa": "https://qa.auth.gr/el/class/1/600111388",
-        "sector": null,
+        "sector": "quantum",
         "status": {
           "en": "EE",
           "el": "EE",
@@ -109,7 +109,7 @@
         }
       },
       {
-        "name": "Συστήματα Ηλεκτρικής Ενέργειας 1",
+        "name": "Συστήματα Ηλεκτρ. Ενέργειας 1",
         "qa": "https://qa.auth.gr/el/class/1/600111392",
         "sector": "en",
         "status": {

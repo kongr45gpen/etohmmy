@@ -24,6 +24,11 @@ SECTOR COLOURS
     }
 }
 
+.bg-light-quantum {
+    background: red; /* For browsers that do not support gradients */
+    background: linear-gradient(to right, orange , gold, #a7d55d, red, #904815, black); /* Standard syntax (must be last) */
+}
+
 .card-deck .card .card-header {
     height: 5rem;
     text-align: center;
@@ -32,4 +37,9 @@ SECTOR COLOURS
 
 .card .lesson-status-Y:nth-of-type(4) {
     margin-bottom: 0.7rem;
+}
+
+.badge-lesson-status {
+    vertical-align: 0.09rem;
+    margin-right: 0.5rem;
 }

@@ -35,9 +35,7 @@
                     <ul>
                         <li v-for="lesson in lessons">
                             <input type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction"> {{ lesson.name }}
-                            <p>
                                 <small>Satisfaction index: <strong>{{ lesson.satisfaction }}</strong></small>
-                            </p>
                         </li>
                     </ul>
                 </form>
@@ -51,6 +49,9 @@
                             <h5 class="card-header" v-bind:class="[ 'bg-' + key ]">Τομέας <b>{{ sector.subtitle_name }}</b></h5>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item" v-for="lesson in results[semester][key]" v-bind:class="[ 'bg-light-' + lesson.sector, 'lesson-status-' + lesson.status[key] ]">
+                                    <span class="badge badge-lesson-status badge-danger" title="Υποχρεωτικό" v-if="lesson.status[key] === 'Y'">Y</span>
+                                    <span class="badge badge-lesson-status badge-info" title="Επιλογής" v-if="lesson.status[key] === 'E'">E</span>
+                                    <span class="badge badge-lesson-status badge-light" title="Ελεύθερης Επιλογής" v-if="lesson.status[key] === 'EE'">EE</span>
                                     {{ lesson.name }}
                                     <span class="badge badge-light float-right">{{ lesson.satisfaction }}</span>
                                 </li>
