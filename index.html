@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,7 +21,7 @@
     </button>
 </nav>
 
-<main role="main" class="container">
+<main role="main" class="container-fluid">
     <div class="">
         <h1>Βοηθός Επιλογής Τομέα ΗΜΜΥ</h1>
         <p class="lead">Καλώς ήλθατε στον Βοηθό Επιλογής Τομέα ΗΜΜΥ!</p>
@@ -34,7 +34,7 @@
                     <h3>Εξάμηνο {{ semester }}</h3>
                     <ul>
                         <li v-for="lesson in lessons">
-                            <input type="range" min="-10" max="10" step="0.1" value="0" v-model="lesson.satisfaction"> {{ lesson.name }}
+                            <input type="range" min="-10" max="10" step="0.1" data-value="0" v-model="lesson.satisfaction"> {{ lesson.name }}
                             <p>
                                 <small>Satisfaction index: <strong>{{ lesson.satisfaction }}</strong></small>
                             </p>
@@ -42,17 +42,35 @@
                     </ul>
                 </form>
             </div>
-            <div class="col-md">
+            <div class="col-md-7">
                 <h1>Results</h1>
-                <div v-for='(sector, key) in sectors'>
-                    <h2>{{ sector.name }}</h2>
-                    <ul>
-                        <li v-for="lesson in results[semester][key]">
-                            {{ lesson.name }} <small>{{ lesson.satisfaction }}</small>
-                        </li>
-                    </ul>
-                    Total satisfaction: <b><big>{{ results[semester][key].satisfaction }}</big></b>
+
+                <div class="card-deck">
+                    <!--<div class="col-md">-->
+                        <div class="card" v-for="(sector, key) in sectors">
+                            <h5 class="card-header" v-bind:class="[ 'bg-' + key ]">Τομέας <b>{{ sector.subtitle_name }}</b></h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" v-for="lesson in results[semester][key]" v-bind:class="[ 'bg-light-' + lesson.sector, 'lesson-status-' + lesson.status[key] ]">
+                                    {{ lesson.name }}
+                                    <span class="badge badge-light float-right">{{ lesson.satisfaction }}</span>
+                                </li>
+                            </ul>
+                            <!--<div class="card-body">-->
+                                <!--<h5 class="card-title">Special title treatment</h5>-->
+                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+                            <!--</div>-->
+                            <div class="card-body">
+
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Ευχαρίστηση Τομέα:</small> <b>{{ results[semester][key].satisfaction }}</b>
+                            </div>
+                        </div>
+                    <!--</div>-->
                 </div>
+
+
                 <p class="text-primary">Best Sector: <b><big>{{ sectors[results[semester]["maxSector"]].short_name }}</big></b></p>
             </div>
         </div>

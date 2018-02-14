@@ -1,6 +1,35 @@
 @import "custom";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+$Sector-Colours: (
+        en:  #D46A6A,
+        el:  #A5C663,
+        tel: #47cdcd,
+);
+
 .container {
     padding-top: 5rem;
+}
+
+/**
+SECTOR COLOURS
+ */
+@each $sector, $colour in $Sector-Colours {
+    .bg-#{$sector} {
+        background-color: $colour;
+    }
+
+    .bg-light-#{$sector} {
+        background-color: saturate(lighten($colour, 30%), 50%);
+    }
+}
+
+.card-deck .card .card-header {
+    height: 5rem;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.card .lesson-status-Y:nth-of-type(4) {
+    margin-bottom: 0.7rem;
 }

@@ -1,12 +1,15 @@
 sectors:
   en:
     short_name: Ενέργεια
+    subtitle_name: Ενέργειας
     name: Τομέας Ενέργειας
   el:
     short_name: Ηλεκτρονική
+    subtitle_name: Ηλεκτρονικής & Υπολογιστών
     name: Τομέας Ηλεκτρονικής και Υπολογιστών
   tel:
     short_name: Τηλεπικοινωνίες
+    subtitle_name: Τηλεπικοινωνιών
     name: Τομέας Τηλεπικοινωνιών
 semesters:
   6:
