@@ -36,12 +36,14 @@
             <div class="col-md">
                 <form>
                     <h3>Εξάμηνο {{ semester }}</h3>
-                    <ul>
-                        <li v-for="lesson in lessons">
-                            <input type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction"> {{ lesson.name }}
-                                <small>Satisfaction index: <strong>{{ lesson.satisfaction }}</strong></small>
-                        </li>
-                    </ul>
+                    <div class="card lesson-list">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item lesson-list-item" v-for="lesson in lessons">
+                                <input type="range" class="lesson-list-range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction">
+                                {{ lesson.name }}
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="col-md-7">
