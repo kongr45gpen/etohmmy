@@ -18,12 +18,19 @@ _.each(Lessons["semesters"], function(s) {
     })
 });
 
+var nav = new Vue({
+    el: '#nav',
+    data: {
+        webpack_reload_count: 0
+    }
+});
+
 var app = new Vue({
     el: '#app',
     data: {
         semesters: Lessons["semesters"],
         sectors: Lessons["sectors"],
-        sample: "teste text"
+        sample: "teste text",
     },
     computed: {
         results: function () {
@@ -108,3 +115,18 @@ var app = new Vue({
 // Export values so they can be accessed in the developer console
 window.lessons = Lessons
 window.app = app
+
+if (module.hot) {
+    module.hot.addStatusHandler(function(status) {
+        if (status === "apply") {
+            nav.webpack_reload_count++;
+        }
+    })
+}
+
+// if (module.hot) {
+//    module.hot.accept(function() {
+//          console.log('Accepting the updated printMe module!');
+//          printMe();
+//        })
+//  }

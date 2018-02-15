@@ -14,21 +14,24 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Βοηθός Επιλογής Τομέα ΗΜΜΥ</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" id="nav">
+    <a class="navbar-brand mr-auto" href="#">Βοηθός Επιλογής Τομέα ΗΜΜΥ</a>
+    <span class="navbar-text" v-show="webpack_reload_count">
+        {{ webpack_reload_count }} {{ webpack_reload_count === 1 ? "update" : "updates" }}
+    </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
 
-<main role="main" class="container-fluid">
+<main role="main" class="container-fluid" >
     <div class="">
         <h1>Βοηθός Επιλογής Τομέα ΗΜΜΥ</h1>
         <p class="lead">Καλώς ήλθατε στον Βοηθό Επιλογής Τομέα ΗΜΜΥ!</p>
         Ο Βοηθός αυτός θα σας βοηθήσει να επιλέξετε τομέα ΗΜΜΥ.
     </div>
     <div id="app">
-        Sample test: {{ sample }} wow
+        Sample test: {{ sample }} wows
         <div v-for="(lessons, semester) in semesters" class="row">
             <div class="col-md">
                 <form>

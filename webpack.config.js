@@ -2,9 +2,11 @@
 const path = require('path');
 // noinspection JSAnnotator
 const webpack = require('webpack');
+// noinspection JSAnnotator
 
 module.exports = {
     entry: './js/index.js',
+    devtool: 'inline-source-map',
     devServer: {
         contentBase: './',
         hot: true
@@ -20,7 +22,7 @@ module.exports = {
     },
     module: {
         rules: [
-            {
+            { // TODO: Use a better approach for this
                 test: /\.html$/,
                 use: ['file-loader']
             },
