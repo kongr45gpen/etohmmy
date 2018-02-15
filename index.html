@@ -28,6 +28,7 @@
         Ο Βοηθός αυτός θα σας βοηθήσει να επιλέξετε τομέα ΗΜΜΥ.
     </div>
     <div id="app">
+        Sample test: {{ sample }} wow
         <div v-for="(lessons, semester) in semesters" class="row">
             <div class="col-md">
                 <form>
@@ -42,7 +43,6 @@
             </div>
             <div class="col-md-7">
                 <h1>Results</h1>
-
                 <div class="card-deck">
                     <!--<div class="col-md">-->
                         <div class="card" v-for="(sector, key) in sectors">
@@ -53,7 +53,7 @@
                                     <span class="badge badge-lesson-status badge-info" title="Επιλογής" v-if="lesson.status[key] === 'E'">E</span>
                                     <span class="badge badge-lesson-status badge-light" title="Ελεύθερης Επιλογής" v-if="lesson.status[key] === 'EE'">EE</span>
                                     {{ lesson.name }}
-                                    <span class="badge badge-light float-right">{{ lesson.satisfaction }}</span>
+                                    <span class="badge badge-dark float-right">{{ lesson.satisfaction }}</span>
                                 </li>
                             </ul>
                             <!--<div class="card-body">-->

@@ -2,6 +2,9 @@ import Vue from 'vue';
 import _ from '../node_modules/underscore/underscore.js';
 import Lessons from '../data/lessons.json'
 
+// CSS updating
+import '../css/main.css'
+
 const Max_Lessons = 7;
 const Free_Lessons = 1;
 
@@ -18,7 +21,8 @@ var app = new Vue({
     el: '#app',
     data: {
         semesters: Lessons["semesters"],
-        sectors: Lessons["sectors"]
+        sectors: Lessons["sectors"],
+        sample: "teste text"
     },
     computed: {
         results: function () {

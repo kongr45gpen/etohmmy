@@ -14,6 +14,15 @@
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
+    "css-loader": "^0.28.9",
+    "style-loader": "^0.20.1",
     "underscore": "^1.8.3"
+  },
+  "scripts": {
+    "webpack": "webpack --config webpack.config.js",
+    "webpack-watch": "webpack --config webpack.config.js --watch",
+    "start": "webpack-dev-server --config webpack.config.js",
+    "server": "webpack-dev-server --config webpack.config.js --open",
+    "gulp-watch": "gulp watch"
   }
 }
