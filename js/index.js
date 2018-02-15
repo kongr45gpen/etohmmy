@@ -2,8 +2,9 @@ import Vue from 'vue';
 import _ from '../node_modules/underscore/underscore.js';
 import Lessons from '../data/lessons.json'
 
-// CSS updating
+// CSS & HTML updating
 import '../css/main.css'
+import '../index.html'
 
 const Max_Lessons = 7;
 const Free_Lessons = 1;

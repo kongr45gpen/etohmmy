@@ -15,14 +15,15 @@
   },
   "dependencies": {
     "css-loader": "^0.28.9",
+    "file-loader": "^1.1.6",
     "style-loader": "^0.20.1",
     "underscore": "^1.8.3"
   },
   "scripts": {
     "webpack": "webpack --config webpack.config.js",
     "webpack-watch": "webpack --config webpack.config.js --watch",
-    "start": "webpack-dev-server --config webpack.config.js",
-    "server": "webpack-dev-server --config webpack.config.js --open",
+    "start": "webpack-dev-server --config webpack.config.js --host 0.0.0.0",
+    "server": "webpack-dev-server --config webpack.config.js --host 0.0.0.0 --open",
     "gulp-watch": "gulp watch"
   }
 }
