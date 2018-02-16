@@ -2,6 +2,8 @@ import Vue from 'vue';
 import _ from '../node_modules/underscore/underscore.js';
 import Lessons from '../data/lessons.json'
 
+import DemoThingy from '../components/DemoThingy.vue'
+
 // CSS & HTML updating
 import '../css/main.css'
 import '../index.html'
@@ -137,6 +139,9 @@ var app = new Vue({
 
             return result;
         }
+    },
+    components: {
+        DemoThingy
     }
 })
 
