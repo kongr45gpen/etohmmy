@@ -50,9 +50,9 @@
                 <h1>Results</h1>
                 <div class="card-deck">
                     <!--<div class="col-md">-->
-                        <div class="card" v-for="(sector, key) in sectors">
+                        <div class="card result-sector" v-for="(sector, key) in sectors">
                             <h5 class="card-header" v-bind:class="[ 'bg-' + key ]">Τομέας <b>{{ sector.subtitle_name }}</b></h5>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush result-sector-list">
                                 <li class="list-group-item" v-for="lesson in results[semester][key]" v-bind:class="[ 'bg-light-' + lesson.sector, 'lesson-status-' + lesson.status[key] ]">
                                     <span class="badge badge-lesson-status badge-danger" title="Υποχρεωτικό" v-if="lesson.status[key] === 'Y'">Y</span>
                                     <span class="badge badge-lesson-status badge-info" title="Επιλογής" v-if="lesson.status[key] === 'E'">E</span>

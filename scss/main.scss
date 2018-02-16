@@ -2,7 +2,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 $Sector-Colours: (
-        en:  #D46A6A,
+        en: #d67162,
         el:  #A5C663,
         tel: #47cdcd,
 );
@@ -17,6 +17,8 @@ SECTOR COLOURS
 @each $sector, $colour in $Sector-Colours {
     .bg-#{$sector} {
         background-color: $colour;
+
+        text-shadow: 1px 1px 5px opacify(lighten($colour, 20%), 0.5);
     }
 
     .bg-light-#{$sector} {
@@ -33,6 +35,19 @@ SECTOR COLOURS
     height: 5rem;
     text-align: center;
     vertical-align: bottom;
+
+
+}
+
+.result-sector-list .list-group-item:first-of-type {
+    $Shadow-Size: 3px;
+
+    box-shadow: 0 2px $Shadow-Size -#{$Shadow-Size} black inset;
+}
+
+.result-sector {
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    border-color: rgba(0,0,0,0.4);
 }
 
 .card .lesson-status-Y:nth-of-type(4) {
