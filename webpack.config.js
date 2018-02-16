@@ -24,7 +24,7 @@ module.exports = {
         rules: [
             { // TODO: Use a better approach for this
                 test: /\.html$/,
-                use: ['file-loader']
+                use: [{ loader: 'file-loader', options: { emitFile: false }}]
             },
             {
                 test: /\.css$/,

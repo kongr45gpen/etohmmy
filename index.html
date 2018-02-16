@@ -38,10 +38,7 @@
                     <h3>Εξάμηνο {{ semester }}</h3>
                     <div class="card lesson-list">
                         <div class="list-group list-group-flush">
-                            <div class="list-group-item lesson-list-item" v-for="(lesson, id) in lessons" v-bind:style="{ backgroundColor: colouredSatisfactions[semester][id] }">
-                                <input type="range" class="lesson-list-range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction">
-                                {{ lesson.name }}
-                            </div>
+                            <lesson-options v-for="(lesson, key) in lessons" :lesson="lesson" :key="key"></lesson-options>
                         </div>
                     </div>
                 </form>
@@ -50,34 +47,12 @@
                 <h1>Results</h1>
                 <div class="card-deck">
                     <!--<div class="col-md">-->
-                        <div class="card result-sector" v-for="(sector, key) in sectors">
-                            <h5 class="card-header" v-bind:class="[ 'bg-' + key ]">Τομέας <b>{{ sector.subtitle_name }}</b></h5>
-                            <ul class="list-group list-group-flush result-sector-list">
-                                <li class="list-group-item d-flex align-items-center" v-for="lesson in results[semester][key]" v-bind:class="[ 'bg-light-' + lesson.sector, 'lesson-status-' + lesson.status[key] ]">
-                                    <span class="badge badge-lesson-status badge-danger" title="Υποχρεωτικό" v-if="lesson.status[key] === 'Y'">Y</span>
-                                    <span class="badge badge-lesson-status badge-info" title="Επιλογής" v-if="lesson.status[key] === 'E'">E</span>
-                                    <span class="badge badge-lesson-status badge-light" title="Ελεύθερης Επιλογής" v-if="lesson.status[key] === 'EE'">EE</span>
-                                    <span class="flex-fill">{{ lesson.name }}</span>
-                                    <span class="badge badge-dark float-right">{{ lesson.satisfaction }}</span>
-                                </li>
-                            </ul>
-                            <!--<div class="card-body">-->
-                                <!--<h5 class="card-title">Special title treatment</h5>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-                            <!--</div>-->
-                            <div class="card-body">
-
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">Ευχαρίστηση Τομέα:</small> <b>{{ results[semester][key].satisfaction.toFixed(1) }}</b>
-                            </div>
-                        </div>
+                        <sector-results v-for="(sector, key, idx) in sectors" :lessons="lessons" :sector="sector" :alias="key" :key="idx"></sector-results>
                     <!--</div>-->
                 </div>
 
 
-                <p class="text-primary">Best Sector: <b><big>{{ sectors[results[semester]["maxSector"]].short_name }}</big></b></p>
+                <!--<p class="text-primary">Best Sector: <b><big>{{ sectors[results[semester]["maxSector"]].short_name }}</big></b></p>-->
             </div>
         </div>
     </div>
@@ -87,3 +62,4 @@
 <script src="js/bundle.js"></script>
 </body>
 </html>
+
