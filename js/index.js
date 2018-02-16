@@ -8,6 +8,7 @@ import '../index.html'
 
 const Max_Lessons = 7;
 const Free_Lessons = 1;
+const Max_Satisfaction = 10;
 
 console.log("Welcome to BETHMMY.");
 
@@ -17,6 +18,23 @@ _.each(Lessons["semesters"], function(s) {
         l["satisfaction"] = 0.0;
     })
 });
+
+function colourise(satisfaction) {
+    var colour = [ 255, 255, 255 ];
+
+    if (satisfaction > 0) {
+        // Linear interpolation
+        colour[0] = 255 * (1.0 - 0.8 * satisfaction / Max_Satisfaction);
+        colour[2] = 255 * (1.0 - 0.5 * satisfaction / Max_Satisfaction);
+    } else {
+        colour[1] = 255 * (1.0 + 0.7 * satisfaction / Max_Satisfaction);
+        colour[2] = 255 * (1.0 + 0.8 * satisfaction / Max_Satisfaction);
+    }
+
+    var opacity = 0.7;
+
+    return "rgba(" + Math.round(colour[0]) + "," + Math.round(colour[1]) + "," + Math.round(colour[2]) + "," + opacity + ")";
+}
 
 var nav = new Vue({
     el: '#nav',
@@ -33,6 +51,16 @@ var app = new Vue({
         sample: "teste text",
     },
     computed: {
+        colouredSatisfactions: function() {
+            var output = [];
+            for (var s in this.semesters) {
+                output[s] = [];
+                for (var l in this.semesters[s]) {
+                    output[s][l] = colourise(this.semesters[s][l].satisfaction);
+                }
+            }
+            return output;
+        },
         results: function () {
             var result = [];
 

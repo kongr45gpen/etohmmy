@@ -38,7 +38,7 @@
                     <h3>Εξάμηνο {{ semester }}</h3>
                     <div class="card lesson-list">
                         <div class="list-group list-group-flush">
-                            <div class="list-group-item lesson-list-item" v-for="lesson in lessons">
+                            <div class="list-group-item lesson-list-item" v-for="(lesson, id) in lessons" v-bind:style="{ backgroundColor: colouredSatisfactions[semester][id] }">
                                 <input type="range" class="lesson-list-range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction">
                                 {{ lesson.name }}
                             </div>
