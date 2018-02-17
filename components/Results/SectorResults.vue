@@ -15,7 +15,6 @@
         <div class="card-footer">
             <small class="text-muted">Ευχαρίστηση Τομέα:</small>
             {{ results.satisfaction.toFixed(1) }}
-            <!--<b>{{ results[semester][key].satisfaction.toFixed(1) }}</b>-->
         </div>
     </div>
 </template>
@@ -107,6 +106,9 @@
                 //     }
                 // }
                 // result[sem]["maxSector"] = maxSector;
+
+                // Emit the update event for the parent Vue component
+                this.$emit('update:results', result);
 
                 return result;
             }
