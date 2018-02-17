@@ -3,8 +3,8 @@ import _ from '../node_modules/underscore/underscore.js';
 import Lessons from '../data/lessons.json'
 
 import DemoThingy from '../components/DemoThingy.vue'
-import LessonOptions from '../components/LessonOptions.vue'
-import SectorResults from '../components/Results/SectorResults.vue'
+import Semester from '../components/Semester.vue'
+
 
 // CSS & HTML updating
 import '../css/main.css'
@@ -35,8 +35,7 @@ var app = new Vue({
     },
     components: {
         DemoThingy,
-        LessonOptions,
-        SectorResults
+        Semester
     }
 })
 
@@ -45,16 +44,13 @@ window.lessons = Lessons
 window.app = app
 
 if (module.hot) {
+    // Whenever the website is updated, increase the update counter in the top of the page.
+    // This is useful so that there is no ambiguity if no changes are shown.
+    // This does not work when the entire page reloads, in which a visual cue is shown by the
+    // browser anyway.
     module.hot.addStatusHandler(function(status) {
         if (status === "apply") {
             nav.webpack_reload_count++;
         }
     })
 }
-
-// if (module.hot) {
-//    module.hot.accept(function() {
-//          console.log('Accepting the updated printMe module!');
-//          printMe();
-//        })
-//  }

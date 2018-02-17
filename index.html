@@ -32,29 +32,7 @@
     </div>
     <div id="app">
         Sample test: {{ sample }} wows <demo-thingy></demo-thingy>
-        <div v-for="(lessons, semester) in semesters" class="row">
-            <div class="col-md">
-                <form>
-                    <h3>Εξάμηνο {{ semester }}</h3>
-                    <div class="card lesson-list">
-                        <div class="list-group list-group-flush">
-                            <lesson-options v-for="(lesson, key) in lessons" :lesson="lesson" :key="key"></lesson-options>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-7">
-                <h1>Results</h1>
-                <div class="card-deck">
-                    <!--<div class="col-md">-->
-                        <sector-results v-for="(sector, key, idx) in sectors" :lessons="lessons" :sector="sector" :alias="key" :key="idx"></sector-results>
-                    <!--</div>-->
-                </div>
-
-
-                <!--<p class="text-primary">Best Sector: <b><big>{{ sectors[results[semester]["maxSector"]].short_name }}</big></b></p>-->
-            </div>
-        </div>
+        <semester v-for="(lessons, semester, idx) in semesters" :lessons="lessons" :semester="semester" :key="idx" :sectors="sectors"></semester>
     </div>
 </main><!-- /.container -->
 
