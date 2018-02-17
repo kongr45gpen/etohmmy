@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import _ from '../node_modules/underscore/underscore.js';
 import Lessons from '../data/lessons.json'
 
 import DemoThingy from '../components/DemoThingy.vue'
@@ -41,11 +40,11 @@ var app = new Vue({
         DemoThingy,
         Semester
     }
-})
+});
 
 // Export values so they can be accessed in the developer console
-window.lessons = Lessons
-window.app = app
+window.lessons = Lessons;
+window.app = app;
 
 if (module.hot) {
     // Whenever the website is updated, increase the update counter in the top of the page.

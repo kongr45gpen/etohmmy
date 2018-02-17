@@ -39,7 +39,6 @@ module.exports = {
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            'underscore$': 'webpack/underscore.js'
         }
     }
 };
