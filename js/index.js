@@ -11,11 +11,15 @@ import '../css/main.css'
 import '../index.html'
 
 console.log("Welcome to BETHMMY.");
+// TODO: Localstorage versioning
 
 // Initialise vue variables
 _.each(Lessons["semesters"], function(s) {
-    _.each(s, function(l) {
-        l["satisfaction"] = 0.0;
+    _.each(s, function(l, key) {
+        // Retrieve stored value from the client storage
+        let storedValue = parseFloat(window.localStorage.getItem("etohmmy.lessons.satisfaction." + key));
+
+        l["satisfaction"] = (!isNaN(storedValue)) ? storedValue : 0.0;
     })
 });
 

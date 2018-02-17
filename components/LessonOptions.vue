@@ -1,6 +1,6 @@
 <template>
     <div class="list-group-item lesson-list-item" v-bind:style="{ backgroundColor: colour }">
-        <input type="range" class="lesson-list-range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction">
+        <input type="range" class="lesson-list-range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
         {{ lesson.name }}
     </div>
 </template>
@@ -33,6 +33,12 @@
                 const opacity = 0.7;
 
                 return "rgba(" + Math.round(colour[0]) + "," + Math.round(colour[1]) + "," + Math.round(colour[2]) + "," + opacity + ")";
+            }
+        },
+        methods: {
+            changeCompleted: function() {
+                // Store the value in the local storage
+                window.localStorage.setItem("etohmmy.lessons.satisfaction." + this.$vnode.key, this.lesson.satisfaction);
             }
         }
     }
