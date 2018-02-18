@@ -125,7 +125,7 @@ let onCourseVisited = function($, path) {
     for (let what in rawAttribs) {
         // Get the possible prefixes of property names that correspond to professors
         if (_.startsWith(what, 'Υπεύθυν') || _.startsWith(what, 'Διδάσκ')) {
-            rawAttribs[what].split(',').forEach(function (professor) {
+            rawAttribs[what].split(/[,\n\t]+/g).forEach(function (professor) {
                 attribs.professors.add(professor.trim());
             });
         }
@@ -156,7 +156,6 @@ let onCourseVisited = function($, path) {
             datum = {};
             existingConfig.semesters[semester].push(datum);
         }
-        console.log(datum);
 
         Object.assign(datum, attribs);
     }
@@ -183,6 +182,4 @@ Promise.all(promises).then(function() {
     console.error("Something has gone terribly wrong.");
     console.error(err);
 });
-
-console.info("reached end of sync");
 
