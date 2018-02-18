@@ -1,7 +1,11 @@
 <template>
-    <div class="list-group-item lesson-list-item" v-bind:style="{ backgroundColor: colour }">
+    <div class="list-group-item list-group-item-action lesson-list-item" v-bind:style="{ backgroundColor: colour }">
         <input type="range" class="lesson-list-range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
         {{ lesson.name }}
+        <p class="mb-1">
+            {{ lesson.description.syllabus }}
+        </p>
+        <small>{{ lesson.professors.join(", ") }}</small>
     </div>
 </template>
 
