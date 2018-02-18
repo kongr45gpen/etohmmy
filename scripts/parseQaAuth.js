@@ -8,6 +8,7 @@ const commander = require('commander');
 const request = require('request');
 const _ = require('lodash');
 const cheerio = require('cheerio');
+const yaml = require('js-yaml');
 require('pretty-error').start();
 
 commander
@@ -16,25 +17,27 @@ commander
 
 if (commander.file === undefined) throw new Error("Invalid arguments. Use the --help option to see usage information for this script.");
 
+const existingConfig = yaml.safeLoad(fs.readFileSync(require('path').resolve(__dirname, '../data/lessons.yml'), 'utf8'));
 const contents = fs.readFileSync(commander.file, 'utf8');
-// console.log(contents);
 
-let count = 0;
+// Javascript asynchronous promises
+let promises = [];
 
-let onCourseLink = _.before(2,_.throttle(function(path) {
-    console.log("Visiting page " + path);
-
+let onCourseLink = function(path, resolve, reject) {
+    console.log("Performing request to " + path);
     request(path, function (error, response, body) {
         if (error) {
             console.error(error);
+            reject();
             return;
         }
 
         fs.writeFileSync("file.html", body);
         // console.log(response);
         onCourseVisited(cheerio.load(body), path);
+        resolve();
     });
-}, 2000));
+};
 
 let onCourseVisited = function($, path) {
     let rawAttribs = {};
@@ -66,8 +69,6 @@ let onCourseVisited = function($, path) {
         }
     }
 
-    console.log(rawAttribs, sectorAttribs);
-
     const description = {
         syllabus: $("#course-elem-course-content-syllabus .value").text(),
         outcomes: $("#course-elem-learning-outcomes .value").text(),
@@ -77,7 +78,7 @@ let onCourseVisited = function($, path) {
     attribs = {
         code: rawAttribs["Class ID"],
         humanCode: rawAttribs["Κωδικός"],
-        title: rawAttribs["Τίτλος"],
+        originalTitle: rawAttribs["Τίτλος"],
         ects: parseInt(ects),
         status: {},
         qa: path,
@@ -110,7 +111,7 @@ let onCourseVisited = function($, path) {
             case 'Επιλογής':
                 status = 'E';
                 break;
-            case 'Ελεύθερης Επιλογής':
+            case 'Ελεύθερη Επιλογή':
                 status = 'EE';
                 break;
             default:
@@ -122,6 +123,7 @@ let onCourseVisited = function($, path) {
     }
 
     for (let what in rawAttribs) {
+        // Get the possible prefixes of property names that correspond to professors
         if (_.startsWith(what, 'Υπεύθυν') || _.startsWith(what, 'Διδάσκ')) {
             rawAttribs[what].split(',').forEach(function (professor) {
                 attribs.professors.add(professor.trim());
@@ -129,18 +131,58 @@ let onCourseVisited = function($, path) {
         }
     }
 
+    // Transform/sanitise values
+    attribs.professors = [...attribs.professors];
+
     for (let semester of semesterSet) {
-        console.info("Adding lesson " + attribs.title + " to semester " + semester);
+        if (existingConfig.semesters[semester] === undefined) {
+            console.warn("Semester " + semester + " not found, creating...");
+            existingConfig.semesters[semester] = [];
+        }
+
+        const oldData = existingConfig.semesters[semester];
+
+        // Search for an existing entry for this lesson
+        let datum = _.find(oldData, function(value) {
+            return value.code === attribs.code || value.humanCode === attribs.humanCode || value.qa === attribs.qa;
+        });
+
+        if (datum !== undefined) {
+            console.info("Adding lesson " + attribs.originalTitle + " to semester " + semester, "(" + datum.name + ")");
+            // Update the existing entry, keeping old elements
+        } else {
+            console.info("Adding lesson " + attribs.originalTitle + " to semester " + semester);
+            console.warn("No existing entry found for lesson, creating a new one...");
+            datum = {};
+            existingConfig.semesters[semester].push(datum);
+        }
+        console.log(datum);
+
+        Object.assign(datum, attribs);
     }
-
-    // attribs.professors = _.uniqu
-
-    console.log(attribs);
 };
 
 let $ = cheerio.load(contents);
 $("a").each(function(i, elem) {
     if ($(this).attr('href') !== undefined) {
-        onCourseLink('https://qa.auth.gr' + $(this).attr('href'));
+        const href = $(this).attr('href');
+
+        // TODO: Throttle
+        promises.push(new Promise(function(resolve, reject) {
+            onCourseLink('https://qa.auth.gr' + href, resolve, reject);
+        }));
     }
 });
+
+console.log("Waiting for " + promises.length + " links...");
+
+Promise.all(promises).then(function() {
+   console.info("wow. All done.");
+   fs.writeFileSync(require('path').resolve(__dirname, '../data/lessons.yml'),yaml.safeDump(existingConfig));
+}, function (err) {
+    console.error("Something has gone terribly wrong.");
+    console.error(err);
+});
+
+console.info("reached end of sync");
+
