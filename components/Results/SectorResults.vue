@@ -21,7 +21,7 @@
 
 <script>
     import LessonResults from './LessonResults.vue'
-    import _ from '../../node_modules/underscore/underscore.js';
+    import _ from 'lodash'
 
     const Max_Lessons = 7;
     const Free_Lessons = 1;

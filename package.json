@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "bootstrap": "^4.0.0",
+    "cheerio": "^1.0.0-rc.2",
     "commander": "^2.14.1",
     "console-error": "^0.0.4",
     "console-info": "^0.0.5",
@@ -14,6 +15,7 @@
     "gulp-uglify": "latest",
     "gulp-yaml": "latest",
     "pretty-error": "^2.1.1",
+    "request": "^2.83.0",
     "vue": "latest",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
@@ -22,7 +24,6 @@
     "css-loader": "^0.28.9",
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
-    "htmlparser2": "^3.9.2",
     "lodash": "^4.17.5",
     "style-loader": "^0.20.1",
     "vue-loader": "^14.1.1",
