@@ -5,7 +5,7 @@
                 <h3>Εξάμηνο {{ semester }}</h3>
                 <div class="card lesson-list">
                     <div class="list-group list-group-flush">
-                        <lesson-options v-for="(lesson, key) in lessons" :lesson="lesson" :key="key"></lesson-options>
+                        <lesson-options v-for="(lesson, key) in lessons" :lesson="lesson" :semester="semester" :key="key"></lesson-options>
                     </div>
                 </div>
             </form>

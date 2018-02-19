@@ -39,6 +39,7 @@ module.exports = {
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
+            'feather$': 'feather-icons/dist/feather.js'
         }
     }
 };

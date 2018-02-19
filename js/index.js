@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import feather from 'feather';
+import 'bootstrap';
 import Lessons from '../data/lessons.json'
 
 import DemoThingy from '../components/DemoThingy.vue'
@@ -49,12 +51,20 @@ var app = new Vue({
     components: {
         DemoThingy,
         Semester
+    },
+    updated() {
+        this.$nextTick(function() {
+            feather.replace();
+        })
     }
 });
 
 // Export values so they can be accessed in the developer console
 window.lessons = Lessons;
 window.app = app;
+window.feather = feather;
+
+feather.replace();
 
 if (module.hot) {
     // Whenever the website is updated, increase the update counter in the top of the page.
