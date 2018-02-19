@@ -34,9 +34,23 @@
                 <p v-html="$options.filters.nl2br(lesson.description.syllabus)"></p>
 
                 <dl class="row">
-                    <dt class="col-sm-3" v-if="lesson.professors.length === 1">Καθηγητής</dt>
-                    <dt class="col-sm-3" v-else>Καθηγητές</dt>
-                    <dd class="col-sm-9">{{ lesson.professors.join(", ") }}</dd>
+                    <dt class="col-sm-2" v-if="lesson.professors.length === 1">Καθηγητής</dt>
+                    <dt class="col-sm-2" v-else>Καθηγητές</dt>
+                    <dd class="col-sm-10">{{ lesson.professors.join(", ") }}</dd>
+
+                    <dt class="col-sm-1">Τομείς</dt>
+                    <dd class="col-sm-11">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <template v-for="(sector, key) in $sectors">
+                                <div class="btn btn-dark">{{ sector.short_name }}</div>
+
+                                <div class="btn btn-warning" v-if="lesson.status[key] === 'Y'">Υποχρεωτικό</div>
+                                <div class="btn btn-primary" v-else-if="lesson.status[key] === 'E'">Επιλογής</div>
+                                <div class="btn btn-secondary" v-else-if="lesson.status[key] === 'EE'">Ελεύθ. Επιλ.</div>
+                                <div class="btn btn-light" v-else><span class="px-4"></span></div>
+                            </template>
+                        </div>
+                    </dd>
                 </dl>
             </div>
         </div>
