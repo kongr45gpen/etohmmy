@@ -14,7 +14,7 @@
             <h1>Results</h1>
             <div class="card-deck">
                 <!--<div class="col-md">-->
-                <sector-results v-for="(sector, key, idx) in sectors"
+                <sector-results v-for="(sector, key, idx) in $sectors"
                                 :lessons="lessons"
                                 :sector="sector"
                                 :alias="key"
@@ -24,7 +24,7 @@
                 <!--</div>-->
             </div>
 
-            <p class="text-primary" v-if="maxSector !== null">Best Sector: <b><big>{{ sectors[maxSector].short_name }}</big></b></p>
+            <p class="text-primary" v-if="maxSector !== null">Best Sector: <b><big>{{ $sectors[maxSector].short_name }}</big></b></p>
         </div>
     </div>
 </template>
@@ -47,10 +47,6 @@
                 // Todo: This should be a Number
                 type: String,
                 required: true
-            },
-            sectors: {
-                type: Object,
-                required: true
             }
         },
         components: {
@@ -62,7 +58,7 @@
                 let max = null;
 
                 // Todo: What if there are multiple max values?
-                for (let sec in this.sectors) {
+                for (let sec in this.$sectors) {
                     if (this.results[sec] !== undefined) {
                         if (max === null || this.results[sec].satisfaction > this.results[max].satisfaction) {
                             max = sec;

@@ -23,10 +23,12 @@ _.each(Lessons["semesters"], function(s) {
     })
 });
 
+// Define global vue properties
 Vue.filter('nl2br', function (str) {
     if (!str) return '';
     return str.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
 });
+Vue.prototype.$sectors = Lessons["sectors"];
 
 let nav = new Vue({
     el: '#nav',
@@ -49,7 +51,6 @@ let app = new Vue({
     el: '#app',
     data: {
         semesters: Lessons["semesters"],
-        sectors: Lessons["sectors"],
         sample: "teste text",
     },
     components: {
