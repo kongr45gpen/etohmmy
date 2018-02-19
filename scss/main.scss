@@ -106,7 +106,40 @@ SECTOR COLOURS
     }
 }
 
+.unbuttonify {
+    cursor: auto;
+}
+
 .badge {
     margin-left: 0.1rem;
 }
 
+.lesson-sector-toolbar {
+    .btn-group {
+        .btn {
+            @extend .unbuttonify;
+
+            font-size: 85%;
+
+            @include media-breakpoint-up(xl) {
+                font-size: 95%;
+            }
+        }
+    }
+}
+
+$property-key-size: 15%;
+
+.lesson-property-key {
+    flex: 0 0 $property-key-size;
+    width: $property-key-size;
+
+    padding-right: 0.5 * $spacer;
+
+    text-align: right;
+}
+
+.lesson-property-value {
+    flex: 0 0 (100% - $property-key-size);
+    width: (100% - $property-key-size);
+}

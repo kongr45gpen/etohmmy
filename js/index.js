@@ -26,7 +26,7 @@ _.each(Lessons["semesters"], function(s) {
 // Define global vue properties
 Vue.filter('nl2br', function (str) {
     if (!str) return '';
-    return str.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
+    return str.toString().trim().replace(/(?:\r\n|\r|\n)/g, '<br />');
 });
 Vue.prototype.$sectors = Lessons["sectors"];
 

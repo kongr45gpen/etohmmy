@@ -1,7 +1,6 @@
 <template>
     <div class="list-group-item lesson-list-item flex-column align-items-start"
        v-bind:style="{ backgroundColor: colour }"
-       v-on:click="buttonPress"
        v-bind:data-target="'#' + collapsibleId"
        data-toggle="collapse"
     >
@@ -33,38 +32,32 @@
             <div class="mb-1 lesson-description">
                 <p v-html="$options.filters.nl2br(lesson.description.syllabus)"></p>
 
-                <dl class="row">
-                    <dt class="col-sm-2" v-if="lesson.professors.length === 1">Καθηγητής</dt>
-                    <dt class="col-sm-2" v-else>Καθηγητές</dt>
-                    <dd class="col-sm-10">{{ lesson.professors.join(", ") }}</dd>
-
-                    <dt class="col-sm-1">Τομείς</dt>
-                    <dd class="col-sm-11">
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <div class="row no-gutters">
+                    <strong class="lesson-property-key" v-if="lesson.professors.length === 1">Καθηγητής</strong>
+                    <strong class="lesson-property-key" v-else>Καθηγητές</strong>
+                    <span class="lesson-property-value">{{ lesson.professors.join(", ") }}</span>
+                </div>
+                <div class="row no-gutters align-items-center">
+                    <strong class="lesson-property-key">Τομείς</strong>
+                    <div class="lesson-property-value">
+                        <div class="btn-toolbar lesson-sector-toolbar">
                             <template v-for="(sector, key) in $sectors">
-                                <div class="btn btn-dark">{{ sector.short_name }}</div>
+                                <div class="btn-group btn-group-sm mr-2 my-1" role="group">
+                                    <div class="btn btn-dark border-dark">{{ sector.short_name }}</div>
 
-                                <div class="btn btn-warning" v-if="lesson.status[key] === 'Y'">Υποχρεωτικό</div>
-                                <div class="btn btn-primary" v-else-if="lesson.status[key] === 'E'">Επιλογής</div>
-                                <div class="btn btn-secondary" v-else-if="lesson.status[key] === 'EE'">Ελεύθ. Επιλ.</div>
-                                <div class="btn btn-light" v-else><span class="px-4"></span></div>
+                                    <div class="btn btn-warning border-dark" v-if="lesson.status[key] === 'Y'">Υποχρεωτικό</div>
+                                    <div class="btn btn-primary border-dark" v-else-if="lesson.status[key] === 'E'">Επιλογής</div>
+                                    <div class="btn btn-secondary border-dark" v-else-if="lesson.status[key] === 'EE'">Ελεύθ. Επιλ.</div>
+                                    <div class="btn btn-light border-dark" v-else><span class="px-4"></span></div>
+                                </div>
                             </template>
                         </div>
-                    </dd>
-                </dl>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
-
-<!--<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">-->
-    <!--<div class="d-flex w-100 justify-content-between">-->
-        <!--<h5 class="mb-1">List group item heading</h5>-->
-        <!--<small class="text-muted">3 days ago</small>-->
-    <!--</div>-->
-    <!--<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>-->
-    <!--<small class="text-muted">Donec id elit non mi porta.</small>-->
-<!--</a>-->
 
 <script>
     import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
@@ -94,13 +87,15 @@
             colour: function() {
                 let colour = [255, 255, 255];
 
+                let cf = 0.5;
+
                 if (this.lesson.satisfaction > 0) {
                     // Linear interpolation
-                    colour[0] = 255 * (1.0 - 0.8 * this.lesson.satisfaction / Max_Satisfaction);
-                    colour[2] = 255 * (1.0 - 0.5 * this.lesson.satisfaction / Max_Satisfaction);
+                    colour[0] = 255 * (1.0 - cf * 0.8 * this.lesson.satisfaction / Max_Satisfaction);
+                    colour[2] = 255 * (1.0 - cf * 0.5 * this.lesson.satisfaction / Max_Satisfaction);
                 } else {
-                    colour[1] = 255 * (1.0 + 0.7 * this.lesson.satisfaction / Max_Satisfaction);
-                    colour[2] = 255 * (1.0 + 0.8 * this.lesson.satisfaction / Max_Satisfaction);
+                    colour[1] = 255 * (1.0 + cf * 0.7 * this.lesson.satisfaction / Max_Satisfaction);
+                    colour[2] = 255 * (1.0 + cf * 0.8 * this.lesson.satisfaction / Max_Satisfaction);
                 }
 
                 const opacity = 0.7;
@@ -131,9 +126,6 @@
                 console.log("value stored in local storage");
                 // Store the value in the local storage
                 window.localStorage.setItem("etohmmy.lessons.satisfaction." + this.$vnode.key, this.lesson.satisfaction);
-            },
-            buttonPress: function(e) {
-                console.log("Button Press", e);
             }
         }
     }
