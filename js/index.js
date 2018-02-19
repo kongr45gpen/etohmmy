@@ -26,6 +26,16 @@ var nav = new Vue({
     el: '#nav',
     data: {
         webpack_reload_count: 0
+    },
+    methods: {
+        reset: function() {
+            window.localStorage.clear();
+            _.each(Lessons["semesters"], function(s) {
+                _.each(s, function(l, key) {
+                    l.satisfaction = 0.0;
+                })
+            })
+        }
     }
 });
 
