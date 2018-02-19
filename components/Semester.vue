@@ -1,9 +1,9 @@
 <template>
     <div class="row">
-        <div class="col-md">
+        <div class="col-md-5">
             <form>
                 <h3>Εξάμηνο {{ semester }}</h3>
-                <div class="card lesson-list">
+                <div class="card lesson-list border-secondary">
                     <div class="list-group list-group-flush" :id="'lessonOptions-' + semester">
                         <lesson-options v-for="(lesson, key) in lessons" :lesson="lesson" :semester="semester" :key="key"></lesson-options>
                     </div>

@@ -23,6 +23,11 @@ SECTOR COLOURS
         background-color: $colour;
 
         text-shadow: 1px 1px 5px opacify(lighten($colour, 20%), 0.5);
+
+        :after {
+            content: #{$primary};
+            @debug "Sorry, but `#{$grid-breakpoints}` is not a valid value for $variable.";
+        }
     }
 
     .bg-light-#{$sector} {
@@ -78,10 +83,30 @@ SECTOR COLOURS
 
 .lesson-utility-icon {
     margin-right: 0.5rem;
-    svg {
-        //width: 1.2rem;
-    }
 
     color: black;
 
+    @include media-breakpoint-down(lg) {
+        font-size: 85%;
+        margin-right: 0.2rem;
+    }
 }
+
+.lesson-description {
+    padding: 1rem;
+    word-wrap: normal;
+    white-space: normal;
+
+    p {
+        white-space: pre-wrap;
+    }
+
+    dl {
+        margin-bottom: 0;
+    }
+}
+
+.badge {
+    margin-left: 0.1rem;
+}
+

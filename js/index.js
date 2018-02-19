@@ -23,16 +23,21 @@ _.each(Lessons["semesters"], function(s) {
     })
 });
 
-var nav = new Vue({
+Vue.filter('nl2br', function (str) {
+    if (!str) return '';
+    return str.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
+});
+
+let nav = new Vue({
     el: '#nav',
     data: {
         webpack_reload_count: 0
     },
     methods: {
-        reset: function() {
+        reset: function () {
             window.localStorage.clear();
-            _.each(Lessons["semesters"], function(s) {
-                _.each(s, function(l, key) {
+            _.each(Lessons["semesters"], function (s) {
+                _.each(s, function (l, key) {
                     l.satisfaction = 0.0;
                 })
             })
@@ -40,7 +45,7 @@ var nav = new Vue({
     }
 });
 
-var app = new Vue({
+let app = new Vue({
     el: '#app',
     data: {
         semesters: Lessons["semesters"],

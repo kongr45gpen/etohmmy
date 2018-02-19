@@ -1,18 +1,26 @@
 <template>
-    <a class="list-group-item lesson-list-item flex-column align-items-start" v-bind:style="{ backgroundColor: colour }" data-toggle="collapse" v-bind:data-target="'#' + collapsibleId">
-        <div class="d-flex w-100 justify-content-between align-items-center">
-            <span class="col-4 font-weight-bold">{{ lesson.name }}</span>
-            <small class="col-2 text-muted">{{ shortProfessors.join(", ") }}</small>
-            <input class="col-3 lesson-list-range" type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
-            <span class="col-1 flex-column d-flex align-items-center justify-content-center lesson-ects">
+    <div class="list-group-item lesson-list-item flex-column align-items-start"
+       v-bind:style="{ backgroundColor: colour }"
+       v-on:click="buttonPress"
+       v-bind:data-target="'#' + collapsibleId"
+       data-toggle="collapse"
+    >
+        <div class="d-flex w-100 justify-content-between align-items-center"
+
+        >
+            <span class="col-4 col-xl-4 font-weight-bold" data-toggle="collapse">{{ lesson.name }}</span>
+            <small class="col-3 col-xl-2 text-muted">{{ shortProfessors.join(", ") }}</small>
+            <!-- Stop event propagation on click, so that the accordion doesn't toggle when the range is changed -->
+            <input class="col-2 col-xl-3 lesson-list-range" type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:click.stop v-on:change="changeCompleted">
+            <span class="col-1 col-xl-1 flex-column d-flex align-items-center justify-content-center lesson-ects">
                 <span class="font-weight-bold">{{ lesson.ects }}</span>
                 <span class="text-muted font-weight-light"><small>ECTS</small></span>
             </span>
-            <span class="col">
-                <a v-bind:href="lesson.qa" class="lesson-utility-icon">
+            <span class="col d-flex">
+                <a v-bind:href="lesson.qa" class="lesson-utility-icon" v-on:click.stop>
                     <font-awesome-icon :icon="faComment" fixed-width />
                 </a>
-                <a v-bind:href="lesson.qa" class="lesson-utility-icon">
+                <a v-bind:href="lesson.qa" class="lesson-utility-icon mr-auto" v-on:click.stop>
                     <font-awesome-icon :icon="faInfo" fixed-width />
                 </a>
                 <a class="lesson-utility-icon" href="#" data-toggle="collapse" v-bind:data-target="'#' + collapsibleId" aria-expanded="false" v-bind:aria-controls="collapsibleId">
@@ -21,13 +29,18 @@
             </span>
         </div>
 
-        <div class="collapse multi-collapse" v-bind:id="collapsibleId" v-bind:data-parent="'#' + parentId">
-            <p class="mb-1">
-                {{ lesson.description.syllabus }}
-                QA: <a v-bind:href="lesson.qa">{{lesson.qa}}</a>
-            </p>
+        <div class="collapse multi-collapse" v-bind:id="collapsibleId" v-bind:data-parent="'#' + parentId" v-on:click.stop>
+            <div class="mb-1 lesson-description">
+                <p v-html="$options.filters.nl2br(lesson.description.syllabus)"></p>
+
+                <dl class="row">
+                    <dt class="col-sm-3" v-if="lesson.professors.length === 1">Καθηγητής</dt>
+                    <dt class="col-sm-3" v-else>Καθηγητές</dt>
+                    <dd class="col-sm-9">{{ lesson.professors.join(", ") }}</dd>
+                </dl>
+            </div>
         </div>
-    </a>
+    </div>
 </template>
 
 <!--<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">-->
@@ -101,8 +114,12 @@
         },
         methods: {
             changeCompleted: function() {
+                console.log("value stored in local storage");
                 // Store the value in the local storage
                 window.localStorage.setItem("etohmmy.lessons.satisfaction." + this.$vnode.key, this.lesson.satisfaction);
+            },
+            buttonPress: function(e) {
+                console.log("Button Press", e);
             }
         }
     }

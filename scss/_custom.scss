@@ -1,2 +1,9 @@
 // Custom bootstrap variables
 
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 1100px,
+        lg: 1400px,
+        xl: 1700px
+) !default;

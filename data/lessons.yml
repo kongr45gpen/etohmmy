@@ -16,7 +16,6 @@ semesters:
     - name: Συστήματα Αυτομάτου Ελέγχου 2
       qa: 'https://qa.auth.gr/el/class/1/600111363'
       sector: el
-      colour: red
       status:
         en: Y
         el: Y
