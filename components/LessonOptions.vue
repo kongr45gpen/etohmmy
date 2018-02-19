@@ -1,5 +1,5 @@
 <template>
-    <div class="list-group-item lesson-list-item flex-column align-items-start" v-bind:style="{ backgroundColor: colour }">
+    <a class="list-group-item lesson-list-item flex-column align-items-start" v-bind:style="{ backgroundColor: colour }" data-toggle="collapse" v-bind:data-target="'#' + collapsibleId">
         <div class="d-flex w-100 justify-content-between align-items-center">
             <span class="col-4 font-weight-bold">{{ lesson.name }}</span>
             <small class="col-2 text-muted">{{ shortProfessors.join(", ") }}</small>
@@ -9,21 +9,25 @@
                 <span class="text-muted font-weight-light"><small>ECTS</small></span>
             </span>
             <span class="col">
-                <a v-bind:href="lesson.qa" class="lesson-utility-icon"><message-square-icon width="12" /></a>
-                <a v-bind:href="lesson.qa" class="lesson-utility-icon"><info-icon width="15" height="auto" /></a>
+                <a v-bind:href="lesson.qa" class="lesson-utility-icon">
+                    <font-awesome-icon :icon="faComment" fixed-width />
+                </a>
+                <a v-bind:href="lesson.qa" class="lesson-utility-icon">
+                    <font-awesome-icon :icon="faInfo" fixed-width />
+                </a>
                 <a class="lesson-utility-icon" href="#" data-toggle="collapse" v-bind:data-target="'#' + collapsibleId" aria-expanded="false" v-bind:aria-controls="collapsibleId">
-                    <chevron-right-icon width="12" />
+                    <font-awesome-icon :icon="faChevronRight" fixed-width />
                 </a>
             </span>
         </div>
 
-        <div class="collapse multi-collapse" v-bind:id="collapsibleId">
+        <div class="collapse multi-collapse" v-bind:id="collapsibleId" v-bind:data-parent="'#' + parentId">
             <p class="mb-1">
                 {{ lesson.description.syllabus }}
                 QA: <a v-bind:href="lesson.qa">{{lesson.qa}}</a>
             </p>
         </div>
-    </div>
+    </a>
 </template>
 
 <!--<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">-->
@@ -36,13 +40,17 @@
 <!--</a>-->
 
 <script>
-    import { ChevronRightIcon, InfoIcon, MessageSquareIcon } from 'vue-feather-icons'
+    import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+    import faInfo from '@fortawesome/fontawesome-free-solid/faInfo'
+    import faChevronRight from '@fortawesome/fontawesome-free-solid/faChevronRight'
+    import faComment from '@fortawesome/fontawesome-free-solid/faComment'
 
     const Max_Satisfaction = 10;
 
     export default {
         name: "LessonOptions",
-        components: { ChevronRightIcon, InfoIcon, MessageSquareIcon },
+        components: { FontAwesomeIcon },
+        data() { return {faChevronRight: faChevronRight, faInfo: faInfo, faComment: faComment} },
         props: {
             // Property: lesson
             lesson: {
@@ -75,9 +83,10 @@
             collapsibleId: function() {
                 return 'lessonDescription-' + this.semester + '-' + this.$vnode.key;
             },
+            parentId: function() {
+                return 'lessonOptions-' + this.semester
+            },
             shortProfessors: function() {
-                console.log("short professor recalcu");
-
                 let array = [];
                 _.each(this.lesson.professors, function(professor) {
                     let splitProfessor = professor.split(' ');
