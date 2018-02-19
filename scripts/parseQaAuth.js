@@ -166,6 +166,8 @@ $("a").each(function(i, elem) {
     if ($(this).attr('href') !== undefined) {
         const href = $(this).attr('href');
 
+        // if (i > 4) return;
+
         // TODO: Throttle
         promises.push(new Promise(function(resolve, reject) {
             onCourseLink('https://qa.auth.gr' + href, resolve, reject);
@@ -176,10 +178,16 @@ $("a").each(function(i, elem) {
 console.log("Waiting for " + promises.length + " links...");
 
 Promise.all(promises).then(function() {
-   console.info("wow. All done.");
-   fs.writeFileSync(require('path').resolve(__dirname, '../data/lessons.yml'),yaml.safeDump(existingConfig));
+   console.info("All done.");
+   fs.writeFileSync(require('path').resolve(__dirname, '../data/lessons.yml'), yaml.dump(existingConfig, {
+       noCompatMode: true,
+       noRefs: true
+   }));
 }, function (err) {
     console.error("Something has gone terribly wrong.");
     console.error(err);
+}).catch(function(error) {
+    console.error("Exception Error");
+    console.error(error);
 });
 
