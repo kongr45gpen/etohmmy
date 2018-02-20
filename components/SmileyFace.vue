@@ -15,12 +15,12 @@
                 class="smiley-eye"
                 cx="14"
                 cy="-12"
-                r="8" ></circle>
+                r="6" ></circle>
         <circle
                 class="smiley-eye"
                 cx="-14"
                 cy="-12"
-                r="8" ></circle>
+                r="6" ></circle>
         <path
                 class="smiley-smile"
                 v-bind:d="smileBezier"
@@ -42,7 +42,7 @@
                 return this.$getSatisfactionToColour(1.3, 0.8, 1)(this.satisfaction);
             },
             smileBezier: function () {
-                let initY = -6.0 * (this.satisfaction/10.0 - 3.0) ;
+                let initY = -6.0 * (this.satisfaction/10.0 - 2.5) ;
                 let control = 4.0 * this.satisfaction;
                 let xMax = 20;
 
