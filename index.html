@@ -35,8 +35,9 @@
         Ο Βοηθός αυτός θα σας βοηθήσει να επιλέξετε τομέα ΗΜΜΥ.
     </div>
     <div id="app">
-        Sample test: {{ sample }} wows <demo-thingy></demo-thingy>
         <semester v-for="(lessons, semester, idx) in semesters" :lessons="lessons" :semester="semester" :key="idx"></semester>
+
+        <h2>Συνολικά Αποτελέσματα</h2>
     </div>
 </main><!-- /.container -->
 

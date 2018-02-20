@@ -90,6 +90,11 @@
                     // Stop if we have no lessons left
                     lesson = lessons[les];
 
+                    if (lesson.status[this.alias] === undefined) {
+                        // Oops! Can't pick that lesson!
+                        continue;
+                    }
+
                     if (lessonsLeft <= 0) {
                         if (lesson.satisfaction > 0) {
                             impossibleLessons.push(lesson);
@@ -117,15 +122,13 @@
                 output["chosen"] = result;
                 output["impossible"] = impossibleLessons;
 
-                console.log(impossibleLessons)
-
                 // Step 3: Calculate statistics
                 output["satisfaction"] = _.reduce(result, function (value, lesson) {
                     return value + lesson["satisfaction"]
                 }, 0);
 
                 // Emit the update event for the parent Vue component
-                this.$emit('update:results', result);
+                this.$emit('update:results', output);
 
                 return output;
             }

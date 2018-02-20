@@ -3,7 +3,6 @@ import 'bootstrap';
 import $ from 'jquery';
 import Lessons from '../data/lessons.json'
 
-import DemoThingy from '../components/DemoThingy.vue'
 import Semester from '../components/Semester.vue'
 
 
@@ -77,10 +76,9 @@ let app = new Vue({
     el: '#app',
     data: {
         semesters: Lessons["semesters"],
-        sample: "teste text",
+        results: {}
     },
     components: {
-        DemoThingy,
         Semester
     },
     mounted() {
