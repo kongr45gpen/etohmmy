@@ -180,7 +180,7 @@ $property-key-size: 35%;
 }
 
 .lesson-professors {
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -200,8 +200,8 @@ $property-key-size: 35%;
 }
 
 .tooltip {
-    @include media-breakpoint-up(lg) {
-        // Todo: Only hide
+    @include media-breakpoint-up(xl) {
+        // Todo: Only hide the professor tooltip
         display: none;
     }
 }
