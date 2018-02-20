@@ -8,7 +8,7 @@
                         <strong class="col-3">Εξάμηνο {{ semester }}</strong>
                         <span class="col-5">
                             <span :class="(results[semester].maxSector !== skey) ? 'text-muted' : ''">Βαθμολογία:</span>
-                            <span class="badge badge-pill badge-dark">
+                            <span class="badge badge-pill" :class="(results[semester].maxSector === skey) ? 'badge-dark' : 'badge-secondary'">
                                 {{ results[semester].satisfaction[skey].toFixed(1) }}
                             </span>
                         </span>
