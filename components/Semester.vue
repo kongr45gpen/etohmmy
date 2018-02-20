@@ -24,7 +24,10 @@
                 <!--</div>-->
             </div>
 
-            <p class="text-primary" v-if="maxSector !== null">Best Sector: <b><big>{{ $sectors[maxSector].short_name }}</big></b></p>
+            <p class="text-primary" v-if="maxSectors !== null">Best Sector:
+                <!--<b><big>{{ $sectors[maxSector].short_name }}</big></b>-->
+                <b><big>{{ maxSectors.map(s => $sectors[s].short_name).join(', ') }}</big></b>
+            </p>
         </div>
     </div>
 </template>
@@ -49,7 +52,6 @@
                 required: true
             },
             resultout: {
-                type: Object,
                 required: true
             }
         },
@@ -58,20 +60,15 @@
             SectorResults
         },
         computed: {
-            maxSector: function () {
-                let max = null;
-
-                // Todo: What if there are multiple max values?
-                for (let sec in this.$sectors) {
-                    if (this.results[sec] !== undefined) {
-                        if (max === null || this.results[sec].satisfaction > this.results[max].satisfaction) {
-                            max = sec;
-                        }
-                    }
-                }
+            maxSectors: function () {
+                const results = this.results;
+                let max = this.maxElements(this.$sectors, function(item, key) {
+                    if (results[key] !== undefined)
+                        return results[key].satisfaction;
+                });
 
                 this.$emit('update:resultout', {
-                    maxSector: max,
+                    maxSectors: max,
                     satisfaction: _.mapValues(this.results, x => x.satisfaction)
                 });
 

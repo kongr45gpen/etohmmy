@@ -16,7 +16,7 @@
 
         </div>
         <div class="card-footer">
-            <small class="text-muted">Ευχαρίστηση Τομέα:</small>
+            <small class="text-muted">Βαθμολογία Τομέα:</small>
             {{ results.satisfaction.toFixed(1) }}
         </div>
     </div>
@@ -96,7 +96,7 @@
                     }
 
                     if (lessonsLeft <= 0) {
-                        if (lesson.satisfaction > 0) {
+                        if (lesson.satisfaction > 0.01) {
                             impossibleLessons.push(lesson);
                         } else {
                             break;
@@ -108,7 +108,9 @@
                     if (lesson.status[this.alias] === "EE") {
                         // No more free lessons left
                         if (freeLeft <= 0) {
-                            impossibleLessons.push(lesson);
+                            if (lesson.satisfaction > 0.0) {
+                                impossibleLessons.push(lesson);
+                            }
                             continue;
                         }
 

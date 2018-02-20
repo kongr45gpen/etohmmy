@@ -5,6 +5,7 @@ import Lessons from '../data/lessons.json'
 
 import Semester from '../components/Semester.vue'
 import TotalResults from '../components/Results/TotalResults.vue'
+import './mixins.js'
 
 
 // CSS & HTML updating
