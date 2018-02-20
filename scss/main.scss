@@ -56,6 +56,25 @@ SECTOR COLOURS
     box-shadow: 0 2px $Shadow-Size -#{$Shadow-Size} black inset;
 }
 
+.result-sector-list {
+    .list-group-item {
+        .flex-fill {
+            @include media-breakpoint-up(xl) {
+                //text-overflow: ellipsis;
+                //overflow: hidden;
+                //white-space: nowrap;
+
+                direction: rtl;
+                text-align: left;
+            }
+        }
+
+        .badge {
+            margin-left: 0.3rem;
+        }
+    }
+}
+
 .result-sector {
     box-shadow: 0 0 4px rgba(0,0,0,0.5);
     border-color: rgba(0,0,0,0.4);
@@ -122,10 +141,6 @@ SECTOR COLOURS
 
 .unbuttonify {
     cursor: auto;
-}
-
-.badge {
-    margin-left: 0.1rem;
 }
 
 .lesson-sector-toolbar {
