@@ -43,7 +43,12 @@ SECTOR COLOURS
 }
 
 .card-deck .card .card-header {
-    height: 5rem;
+    height: 7rem;
+
+    @include media-breakpoint-up(xl) {
+        height: 5rem;
+    }
+
     text-align: center;
     vertical-align: bottom;
 
@@ -58,6 +63,8 @@ SECTOR COLOURS
 
 .result-sector-list {
     .list-group-item {
+        font-size: 95%;
+
         .flex-fill {
             @include media-breakpoint-up(xl) {
                 //text-overflow: ellipsis;
@@ -204,4 +211,37 @@ $property-key-size: 35%;
         // Todo: Only hide the professor tooltip
         display: none;
     }
+}
+
+.sector-deselection {
+    max-width: 1600px;
+
+    .card {
+        @include media-breakpoint-down(sm) {
+            margin-bottom: 2 * $spacer;
+        }
+
+        text-align: center;
+        transition: 0.3s all;
+        cursor: pointer;
+
+        h5 {
+            white-space: normal;
+        }
+
+        @include media-breakpoint-up(md) {
+            flex: 0 1 auto;
+            width: 30%;
+        }
+    }
+
+}
+
+.result-other-lessons {
+    font-size: 90%;
+}
+
+.lesson-list-item-deselected {
+    //color: $text-muted;
+    opacity: 0.5;
 }

@@ -3,6 +3,7 @@ import 'bootstrap';
 import $ from 'jquery';
 import Lessons from '../data/lessons.json'
 
+import Deselect from '../components/Deselect.vue'
 import Semester from '../components/Semester.vue'
 import TotalResults from '../components/Results/TotalResults.vue'
 import './mixins.js'
@@ -24,6 +25,7 @@ _.each(Lessons["semesters"], function(s, skey) {
         let storedValue = parseFloat(window.localStorage.getItem("etohmmy.lessons.satisfaction." + skey + "." + key));
 
         l["satisfaction"] = (!isNaN(storedValue)) ? storedValue : 0.0;
+        l["deselected"] = false;
     })
 });
 
@@ -33,11 +35,14 @@ Vue.filter('nl2br', function (str) {
     return str.toString().trim().replace(/(?:\r\n|\r|\n)/g, '<br />');
 });
 Vue.prototype.$sectors = Lessons["sectors"];
+Vue.prototype.$fakeSectors = Lessons["fake_sectors"];
 Vue.prototype.$MaxSatisfaction = Max_Satisfaction;
-Vue.prototype.$getSatisfactionToColour = function(saturation = 1, brightness = 1, opacity = 1) {
+Vue.prototype.$getSatisfactionToColour = function(saturation = 1, brightness = 1, opacity = 1, override = false) {
     const maxValue = 255.0 * brightness;
 
     return function(satisfaction) {
+        if (override) return "rgba(240,180,140,0.5)";
+
         let colour = [maxValue, maxValue, maxValue];
 
         const cf = saturation;
@@ -57,10 +62,20 @@ Vue.prototype.$getSatisfactionToColour = function(saturation = 1, brightness = 1
     }
 };
 
-let nav = new Vue({
-    el: '#nav',
+let app = new Vue({
+    el: '#app',
     data: {
+        semesters: Lessons["semesters"],
+        results: {},
         webpack_reload_count: 0
+    },
+    components: {
+        Semester, TotalResults, Deselect
+    },
+    mounted() {
+        this.$nextTick(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
     },
     methods: {
         reset: function () {
@@ -68,25 +83,11 @@ let nav = new Vue({
             _.each(Lessons["semesters"], function (s) {
                 _.each(s, function (l, key) {
                     l.satisfaction = 0.0;
+                    l.deselected = false;
                 })
-            })
+            });
+            this.$emit('update:offsect', 1);
         }
-    }
-});
-
-let app = new Vue({
-    el: '#app',
-    data: {
-        semesters: Lessons["semesters"],
-        results: {}
-    },
-    components: {
-        Semester, TotalResults
-    },
-    mounted() {
-        this.$nextTick(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        })
     }
 });
 
@@ -102,7 +103,7 @@ if (module.hot) {
     // browser anyway.
     module.hot.addStatusHandler(function(status) {
         if (status === "apply") {
-            nav.webpack_reload_count++;
+            app.webpack_reload_count++;
         }
     })
 }

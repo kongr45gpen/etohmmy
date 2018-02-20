@@ -11,7 +11,7 @@
                         <span class="col-5">
                             <span :class="!results[semester].maxSectors.includes(skey) ? 'text-muted' : ''">Βαθμολογία:</span>
                             <span class="badge badge-pill" :class="results[semester].maxSectors.includes(skey) ? 'badge-dark' : 'badge-secondary'">
-                                {{ results[semester].satisfaction[skey].toFixed(1) }}
+                                {{(results[semester].satisfaction[skey] !== undefined) ? results[semester].satisfaction[skey].toFixed(1) : 0.0}}
                             </span>
                         </span>
                     </div>
@@ -54,13 +54,6 @@
             },
             maxSectors: function() {
                 const sums = this.sums;
-
-                // Todo: What if there are multiple max values?
-                // for (let sec in this.sums) {
-                //     if (max === null || this.sums[sec] > this.sums[max]) {
-                //         max = sec;
-                //     }
-                // }
 
                 return this.maxElements(this.sums, sat => sat);
             }

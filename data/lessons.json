@@ -19,6 +19,14 @@
       "bootstrap_colour": "primary"
     }
   },
+  "fake_sectors": {
+    "economics": {
+      "short_name": "Οικονομικά",
+      "subtitle_name": "Οικονομικών",
+      "name": "Οικονομικά",
+      "bootstrap_colour": "info"
+    }
+  },
   "semesters": {
     "6": [
       {

@@ -6,7 +6,7 @@
         </ul>
         <div class="card-body">
         <h6 class="card-title">Άλλα Μαθήματα</h6>
-        <p class="card-text text-muted">
+        <p class="card-text text-muted result-other-lessons">
             <span v-for="lesson in results.impossible">
                 {{ lesson.name }} <span class="badge badge-light float-right">{{ lesson.satisfaction.toFixed(1) }}</span><br>
             </span>

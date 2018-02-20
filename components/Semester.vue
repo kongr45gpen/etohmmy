@@ -24,7 +24,8 @@
                 <!--</div>-->
             </div>
 
-            <p class="text-primary" v-if="maxSectors !== null">Best Sector:
+            <p class="text-primary m-2" v-if="maxSectors !== null">
+                {{ (maxSectors.length === 1) ? 'Καλύτερος Τομέας' : 'Καλύτεροι Τομείς' }}:
                 <!--<b><big>{{ $sectors[maxSector].short_name }}</big></b>-->
                 <b><big>{{ maxSectors.map(s => $sectors[s].short_name).join(', ') }}</big></b>
             </p>

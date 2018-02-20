@@ -1,6 +1,7 @@
 <template>
     <div class="list-group-item lesson-list-item flex-column align-items-start"
        v-bind:style="{ backgroundColor: colour }"
+       v-bind:class="(lesson.deselected && lesson.satisfaction === -10) ? 'lesson-list-item-deselected' : ''"
        v-bind:data-target="'#' + collapsibleId"
        data-toggle="collapse"
     >
@@ -117,7 +118,7 @@
         },
         computed: {
             colour: function() {
-                return this.$getSatisfactionToColour(0.7, 1, 0.7)(this.lesson.satisfaction);
+                return this.$getSatisfactionToColour(0.7, 1, 0.7, this.lesson.deselected && this.lesson.satisfaction < -9.999)(this.lesson.satisfaction);
             },
             collapsibleId: function() {
                 return 'lessonDescription-' + this.semester + '-' + this.$vnode.key;
