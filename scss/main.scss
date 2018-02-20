@@ -1,6 +1,8 @@
 @import "custom";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+@import "smiley";
+
 $Sector-Colours: (
         en: #d67162,
         el:  #A5C663,
@@ -73,8 +75,19 @@ SECTOR COLOURS
 }
 
 .lesson-list-range {
-    height: 0.5rem;
+    margin-right: $spacer;
+    //height: 0.5rem;
+    input {
+        vertical-align: middle;
+        width: 100%;
+    }
+    flex: 1 1 auto;
+}
+
+.lesson-list-smiley {
+    margin-right: 0.5 * $spacer;
     vertical-align: middle;
+    flex: 0 1 auto;
 }
 
 .lesson-ects {
@@ -82,8 +95,8 @@ SECTOR COLOURS
 }
 
 .lesson-utility-icon {
-    margin-right: 0.5rem;
-
+    margin-right: 0.3rem;
+    flex: 0 2 auto;
     color: black;
 
     @include media-breakpoint-down(lg) {

@@ -9,23 +9,33 @@
         >
             <span class="col-4 col-xl-4 font-weight-bold" data-toggle="collapse">{{ lesson.name }}</span>
             <small class="col-3 col-xl-2 text-muted">{{ shortProfessors.join(", ") }}</small>
-            <!-- Stop event propagation on click, so that the accordion doesn't toggle when the range is changed -->
-            <input class="col-2 col-xl-3 lesson-list-range" type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:click.stop v-on:change="changeCompleted">
             <span class="col-1 col-xl-1 flex-column d-flex align-items-center justify-content-center lesson-ects">
                 <span class="font-weight-bold">{{ lesson.ects }}</span>
                 <span class="text-muted font-weight-light"><small>ECTS</small></span>
             </span>
-            <span class="col d-flex">
+
+            <!-- Stop event propagation on click, so that the accordion doesn't toggle when the range is changed -->
+            <!--<div class="col-2 col-xl-4 d-flex align-items-center">-->
+            <div class="d-flex align-items-center">
+                <div class="lesson-list-smiley">
+                    <smiley-face class="lesson-list-smiley" :satisfaction="lesson.satisfaction"></smiley-face>
+                </div>
+                <div class="lesson-list-range">
+                    <input type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:click.stop v-on:change="changeCompleted">
+                </div>
+            <!--<span class="col d-flex">-->
                 <a v-bind:href="lesson.qa" class="lesson-utility-icon" v-on:click.stop>
                     <font-awesome-icon :icon="faComment" fixed-width />
                 </a>
-                <a v-bind:href="lesson.qa" class="lesson-utility-icon mr-auto" v-on:click.stop>
+                <a v-bind:href="lesson.qa" class="lesson-utility-icon" v-on:click.stop>
                     <font-awesome-icon :icon="faInfo" fixed-width />
                 </a>
                 <a class="lesson-utility-icon" href="#" data-toggle="collapse" v-bind:data-target="'#' + collapsibleId" aria-expanded="false" v-bind:aria-controls="collapsibleId">
                     <font-awesome-icon :icon="faChevronRight" fixed-width />
                 </a>
-            </span>
+            <!--</span>-->
+            </div>
+
         </div>
 
         <div class="collapse multi-collapse" v-bind:id="collapsibleId" v-bind:data-parent="'#' + parentId" v-on:click.stop>
@@ -37,6 +47,7 @@
                     <strong class="lesson-property-key" v-else>Καθηγητές</strong>
                     <span class="lesson-property-value">{{ lesson.professors.join(", ") }}</span>
                 </div>
+
                 <div class="row no-gutters align-items-center">
                     <strong class="lesson-property-key">Τομείς</strong>
                     <div class="lesson-property-value">
@@ -54,6 +65,13 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row no-gutters">
+                    <strong class="lesson-property-key">Βαθμολογία</strong>
+                    <span class="lesson-property-value">
+                        <input type="range" min="-10" max="10" step="0.01" style="width:100%" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -64,12 +82,13 @@
     import faInfo from '@fortawesome/fontawesome-free-solid/faInfo'
     import faChevronRight from '@fortawesome/fontawesome-free-solid/faChevronRight'
     import faComment from '@fortawesome/fontawesome-free-solid/faComment'
+    import SmileyFace from './SmileyFace.vue';
 
-    const Max_Satisfaction = 10;
+
 
     export default {
         name: "LessonOptions",
-        components: { FontAwesomeIcon },
+        components: { SmileyFace, FontAwesomeIcon },
         data() { return {faChevronRight: faChevronRight, faInfo: faInfo, faComment: faComment} },
         props: {
             // Property: lesson
@@ -85,22 +104,7 @@
         },
         computed: {
             colour: function() {
-                let colour = [255, 255, 255];
-
-                let cf = 0.5;
-
-                if (this.lesson.satisfaction > 0) {
-                    // Linear interpolation
-                    colour[0] = 255 * (1.0 - cf * 0.8 * this.lesson.satisfaction / Max_Satisfaction);
-                    colour[2] = 255 * (1.0 - cf * 0.5 * this.lesson.satisfaction / Max_Satisfaction);
-                } else {
-                    colour[1] = 255 * (1.0 + cf * 0.7 * this.lesson.satisfaction / Max_Satisfaction);
-                    colour[2] = 255 * (1.0 + cf * 0.8 * this.lesson.satisfaction / Max_Satisfaction);
-                }
-
-                const opacity = 0.7;
-
-                return "rgba(" + Math.round(colour[0]) + "," + Math.round(colour[1]) + "," + Math.round(colour[2]) + "," + opacity + ")";
+                return this.$getSatisfactionToColour(0.7, 1, 0.7)(this.lesson.satisfaction);
             },
             collapsibleId: function() {
                 return 'lessonDescription-' + this.semester + '-' + this.$vnode.key;
