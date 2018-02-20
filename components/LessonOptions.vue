@@ -23,7 +23,7 @@
                     <smiley-face class="lesson-list-smiley" :satisfaction="lesson.satisfaction"></smiley-face>
                 </div>
                 <div class="lesson-list-range">
-                    <input type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:click.stop v-on:change="changeCompleted">
+                    <input title="Βαθμολογία" type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:click.stop v-on:change="changeCompleted">
                 </div>
             <!--<span class="col d-flex">-->
                 <a v-bind:href="lesson.qa" class="lesson-utility-icon" v-on:click.stop>
@@ -78,7 +78,7 @@
                 <div class="row no-gutters align-items-center">
                     <strong class="lesson-property-key">Βαθμολογία</strong>
                     <span class="lesson-property-value d-flex align-items-center">
-                        <input class="lesson-aux-satisfaction" type="range" min="-10" max="10" step="0.01" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
+                        <input title="Βαθμολογία" class="lesson-aux-satisfaction" type="range" min="-10" max="10" step="0.01" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
                         <a class="btn btn-outline-light border-danger lesson-aux-reset btn-sm"
                            v-on:click="lesson.satisfaction = 0; changeCompleted();">
                             <span class="d-none d-sm-inline">Reset</span>

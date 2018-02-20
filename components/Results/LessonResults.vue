@@ -4,7 +4,7 @@
         <span class="badge badge-lesson-status badge-info" title="Επιλογής" v-if="lesson.status[sector] === 'E'">E</span>
         <span class="badge badge-lesson-status badge-light" title="Ελεύθερης Επιλογής" v-if="lesson.status[sector] === 'EE'">EE</span>
         <span class="flex-fill">{{ lesson.name }}</span>
-        <span class="badge badge-dark float-right">{{ lesson.satisfaction }}</span>
+        <span class="badge badge-dark float-right">{{ lesson.satisfaction.toFixed(1) }}</span>
     </li>
 </template>
 

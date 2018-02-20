@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-5">
             <form>
-                <h3>Εξάμηνο {{ semester }}</h3>
+                <h2>Εξάμηνο {{ semester }}</h2>
                 <div class="card lesson-list border-secondary">
                     <div class="list-group list-group-flush" :id="'lessonOptions-' + semester">
                         <lesson-options v-for="(lesson, key) in lessons" :lesson="lesson" :semester="semester" :key="key"></lesson-options>
@@ -11,7 +11,7 @@
             </form>
         </div>
         <div class="col-md-7">
-            <h1>Results</h1>
+            <h3>Αποτελέσματα</h3>
             <div class="card-deck">
                 <!--<div class="col-md">-->
                 <sector-results v-for="(sector, key, idx) in $sectors"
