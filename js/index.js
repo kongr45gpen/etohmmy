@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import 'bootstrap';
+import $ from 'jquery';
 import Lessons from '../data/lessons.json'
 
 import DemoThingy from '../components/DemoThingy.vue'
@@ -82,10 +83,11 @@ let app = new Vue({
         DemoThingy,
         Semester
     },
-    // updated() {
-    //     this.$nextTick(function() {
-    //     })
-    // }
+    mounted() {
+        this.$nextTick(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+    }
 });
 
 // Export values so they can be accessed in the developer console

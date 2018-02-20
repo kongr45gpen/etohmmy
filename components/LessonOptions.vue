@@ -8,15 +8,17 @@
 
         >
             <span class="col-4 col-xl-4 font-weight-bold" data-toggle="collapse">{{ lesson.name }}</span>
-            <small class="col-3 col-xl-2 text-muted">{{ shortProfessors.join(", ") }}</small>
-            <span class="col-1 col-xl-1 flex-column d-flex align-items-center justify-content-center lesson-ects">
+            <small class="col-2 d-none d-sm-block col-xl-2 text-muted lesson-professors"
+                   data-toggle="tooltip" data-html="true" data-placement="top"
+                   :data-title="lesson.professors.join('<br>')">{{ shortProfessors.join(", ") }}</small>
+            <span class="col-1 d-none d-md-flex col-xl-1 flex-column align-items-center justify-content-center lesson-ects">
                 <span class="font-weight-bold">{{ lesson.ects }}</span>
                 <span class="text-muted font-weight-light"><small>ECTS</small></span>
             </span>
 
             <!-- Stop event propagation on click, so that the accordion doesn't toggle when the range is changed -->
             <!--<div class="col-2 col-xl-4 d-flex align-items-center">-->
-            <div class="d-flex align-items-center">
+            <div class="d-flex col align-items-center">
                 <div class="lesson-list-smiley">
                     <smiley-face class="lesson-list-smiley" :satisfaction="lesson.satisfaction"></smiley-face>
                 </div>

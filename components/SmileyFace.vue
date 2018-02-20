@@ -15,12 +15,12 @@
                 class="smiley-eye"
                 cx="14"
                 cy="-12"
-                r="6" ></circle>
+                r="7" ></circle>
         <circle
                 class="smiley-eye"
                 cx="-14"
                 cy="-12"
-                r="6" ></circle>
+                r="7" ></circle>
         <path
                 class="smiley-smile"
                 v-bind:d="smileBezier"

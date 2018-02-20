@@ -80,6 +80,7 @@ SECTOR COLOURS
     input {
         vertical-align: middle;
         width: 100%;
+        min-width: 50px;
     }
     flex: 1 1 auto;
 }
@@ -141,11 +142,17 @@ SECTOR COLOURS
     }
 }
 
-$property-key-size: 15%;
+$property-key-size-sm: 15%;
+$property-key-size: 40%;
 
 .lesson-property-key {
     flex: 0 0 $property-key-size;
     width: $property-key-size;
+
+    @include media-breakpoint-up(sm) {
+        flex: 0 0 $property-key-size-sm;
+        width: $property-key-size-sm;
+    }
 
     padding-right: 0.5 * $spacer;
 
@@ -155,4 +162,24 @@ $property-key-size: 15%;
 .lesson-property-value {
     flex: 0 0 (100% - $property-key-size);
     width: (100% - $property-key-size);
+}
+
+.lesson-professors {
+    @include media-breakpoint-down(md) {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    @include media-breakpoint-up(sm) {
+        flex: 0 0 $property-key-size-sm;
+        width: $property-key-size-sm;
+    }
+}
+
+.tooltip {
+    @include media-breakpoint-up(lg) {
+        // Todo: Only hide
+        display: none;
+    }
 }
