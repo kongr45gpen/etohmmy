@@ -143,7 +143,7 @@ SECTOR COLOURS
 }
 
 $property-key-size-sm: 15%;
-$property-key-size: 40%;
+$property-key-size: 30%;
 
 .lesson-property-key {
     flex: 0 1 $property-key-size;
@@ -181,6 +181,7 @@ $property-key-size: 40%;
     vertical-align: middle;
     width: 100%;
     flex: 1 1 auto;
+    margin-right: $spacer;
 }
 
 .tooltip {

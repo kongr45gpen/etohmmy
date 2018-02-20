@@ -17,10 +17,10 @@ console.log("Welcome to BETHMMY.");
 // TODO: Localstorage versioning
 
 // Initialise vue variables
-_.each(Lessons["semesters"], function(s) {
+_.each(Lessons["semesters"], function(s, skey) {
     _.each(s, function(l, key) {
         // Retrieve stored value from the client storage
-        let storedValue = parseFloat(window.localStorage.getItem("etohmmy.lessons.satisfaction." + key));
+        let storedValue = parseFloat(window.localStorage.getItem("etohmmy.lessons.satisfaction." + skey + "." + key));
 
         l["satisfaction"] = (!isNaN(storedValue)) ? storedValue : 0.0;
     })

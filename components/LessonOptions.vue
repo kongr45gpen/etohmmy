@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="row no-gutters align-items-center">
-                    <strong class="lesson-property-key">Τομείς</strong>
+                    <strong class="lesson-property-key">Επιλογή</strong>
                     <div class="lesson-property-value">
                         <div class="btn-toolbar lesson-sector-toolbar">
                             <template v-for="(sector, key) in $sectors">
@@ -68,12 +68,22 @@
                     </div>
                 </div>
 
+                <div class="row no-gutters" v-if="$sectors[lesson.sector] !== undefined">
+                    <strong class="lesson-property-key">Τομέας</strong>
+                    <span class="lesson-property-value">
+                        {{  $sectors[lesson.sector].subtitle_name  }}
+                    </span>
+                </div>
+
                 <div class="row no-gutters align-items-center">
                     <strong class="lesson-property-key">Βαθμολογία</strong>
                     <span class="lesson-property-value d-flex align-items-center">
                         <input class="lesson-aux-satisfaction" type="range" min="-10" max="10" step="0.01" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
                         <a class="btn btn-outline-light border-danger lesson-aux-reset btn-sm"
-                           v-on:click="lesson.satisfaction = 0; changeCompleted();">Reset</a>
+                           v-on:click="lesson.satisfaction = 0; changeCompleted();">
+                            <span class="d-none d-sm-inline">Reset</span>
+                            <span class="d-sm-none"><font-awesome-icon :icon="faReply"></font-awesome-icon></span>
+                        </a>
                     </span>
                 </div>
             </div>
@@ -86,14 +96,13 @@
     import faInfo from '@fortawesome/fontawesome-free-solid/faInfo'
     import faChevronRight from '@fortawesome/fontawesome-free-solid/faChevronRight'
     import faComment from '@fortawesome/fontawesome-free-solid/faComment'
+    import faReply from '@fortawesome/fontawesome-free-solid/faReply'
     import SmileyFace from './SmileyFace.vue';
-
-
 
     export default {
         name: "LessonOptions",
         components: { SmileyFace, FontAwesomeIcon },
-        data() { return {faChevronRight: faChevronRight, faInfo: faInfo, faComment: faComment} },
+        data() { return {faChevronRight: faChevronRight, faInfo: faInfo, faComment: faComment, faReply: faReply} },
         props: {
             // Property: lesson
             lesson: {
@@ -133,7 +142,7 @@
             changeCompleted: function() {
                 console.log("value stored in local storage");
                 // Store the value in the local storage
-                window.localStorage.setItem("etohmmy.lessons.satisfaction." + this.$vnode.key, this.lesson.satisfaction);
+                window.localStorage.setItem("etohmmy.lessons.satisfaction." + this.semester + "." + this.$vnode.key, this.lesson.satisfaction);
             }
         }
     }
