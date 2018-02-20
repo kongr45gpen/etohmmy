@@ -47,6 +47,10 @@
                 // Todo: This should be a Number
                 type: String,
                 required: true
+            },
+            resultout: {
+                type: Object,
+                required: true
             }
         },
         components: {
@@ -65,6 +69,11 @@
                         }
                     }
                 }
+
+                this.$emit('update:resultout', {
+                    maxSector: max,
+                    satisfaction: _.mapValues(this.results, x => x.satisfaction)
+                });
 
                 return max;
             }

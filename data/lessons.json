@@ -3,17 +3,20 @@
     "en": {
       "short_name": "Ενέργεια",
       "subtitle_name": "Ενέργειας",
-      "name": "Τομέας Ενέργειας"
+      "name": "Τομέας Ενέργειας",
+      "bootstrap_colour": "warning"
     },
     "el": {
       "short_name": "Ηλεκτρονική",
       "subtitle_name": "Ηλεκτρονικής & Υπολογιστών",
-      "name": "Τομέας Ηλεκτρονικής και Υπολογιστών"
+      "name": "Τομέας Ηλεκτρονικής και Υπολογιστών",
+      "bootstrap_colour": "success"
     },
     "tel": {
       "short_name": "Τηλεπικοινωνίες",
       "subtitle_name": "Τηλεπικοινωνιών",
-      "name": "Τομέας Τηλεπικοινωνιών"
+      "name": "Τομέας Τηλεπικοινωνιών",
+      "bootstrap_colour": "primary"
     }
   },
   "semesters": {

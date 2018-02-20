@@ -35,9 +35,12 @@
         Ο Βοηθός αυτός θα σας βοηθήσει να επιλέξετε τομέα ΗΜΜΥ.
     </div>
     <div id="app">
-        <semester v-for="(lessons, semester, idx) in semesters" :lessons="lessons" :semester="semester" :key="idx"></semester>
+        <semester v-for="(lessons, semester, idx) in semesters" :lessons="lessons" :semester="semester" :key="idx"
+                  :resultout.sync="results[semester]"
+        ></semester>
 
         <h2>Συνολικά Αποτελέσματα</h2>
+        <total-results :results="results" :semesters="_.keys(semesters)"></total-results>
     </div>
 </main><!-- /.container -->
 
@@ -45,4 +48,3 @@
 <script src="js/bundle.js"></script>
 </body>
 </html>
-

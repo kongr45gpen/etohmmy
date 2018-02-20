@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Lessons from '../data/lessons.json'
 
 import Semester from '../components/Semester.vue'
+import TotalResults from '../components/Results/TotalResults.vue'
 
 
 // CSS & HTML updating
@@ -79,7 +80,7 @@ let app = new Vue({
         results: {}
     },
     components: {
-        Semester
+        Semester, TotalResults
     },
     mounted() {
         this.$nextTick(function() {
