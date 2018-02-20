@@ -68,10 +68,12 @@
                     </div>
                 </div>
 
-                <div class="row no-gutters">
+                <div class="row no-gutters align-items-center">
                     <strong class="lesson-property-key">Βαθμολογία</strong>
-                    <span class="lesson-property-value">
-                        <input type="range" min="-10" max="10" step="0.01" style="width:100%" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
+                    <span class="lesson-property-value d-flex align-items-center">
+                        <input class="lesson-aux-satisfaction" type="range" min="-10" max="10" step="0.01" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
+                        <a class="btn btn-outline-light border-danger lesson-aux-reset btn-sm"
+                           v-on:click="lesson.satisfaction = 0; changeCompleted();">Reset</a>
                     </span>
                 </div>
             </div>

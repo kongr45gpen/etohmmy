@@ -177,6 +177,11 @@ $property-key-size: 40%;
     }
 }
 
+.lesson-aux-satisfaction {
+    vertical-align: middle;
+    width: 100%;
+}
+
 .tooltip {
     @include media-breakpoint-up(lg) {
         // Todo: Only hide
