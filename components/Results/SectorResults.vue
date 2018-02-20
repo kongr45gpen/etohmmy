@@ -2,13 +2,16 @@
     <div class="card result-sector">
         <h5 class="card-header" v-bind:class="[ 'bg-' + alias ]">Τομέας <b>{{ sector.subtitle_name }}</b></h5>
         <ul class="list-group list-group-flush result-sector-list">
-            <lesson-results v-for="(lesson, lkey) in results" :lesson="lesson" :sector="alias" :key="lkey"></lesson-results>
+            <lesson-results v-for="(lesson, lkey) in results.chosen" :lesson="lesson" :sector="alias" :key="lkey"></lesson-results>
         </ul>
-        <!--<div class="card-body">-->
-        <!--<h5 class="card-title">Special title treatment</h5>-->
-        <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-        <!--</div>-->
+        <div class="card-body">
+        <h6 class="card-title">Άλλα Μαθήματα</h6>
+        <p class="card-text text-muted">
+            <span v-for="lesson in results.impossible">
+                {{ lesson.name }} <span class="badge badge-light float-right">{{ lesson.satisfaction.toFixed(1) }}</span><br>
+            </span>
+        </p>
+        </div>
         <div class="card-body">
 
         </div>
@@ -47,6 +50,13 @@
             results: function () {
                 let lesson;
                 let result = [];
+                /**
+                 * Number of lessons that have a positive satisfaction, but are not chosen due
+                 * to constraints.
+                 * @type {Array}
+                 */
+                let impossibleLessons = [];
+                let output = {};
 
                 // Clone the list of lessons
                 let lessons = _.sortBy(this.lessons, function (l) {
@@ -78,13 +88,24 @@
                 // Lessons are sorted from awesome to terrible
                 for (let les in lessons) {
                     // Stop if we have no lessons left
-                    if (lessonsLeft <= 0) break;
-
                     lesson = lessons[les];
+
+                    if (lessonsLeft <= 0) {
+                        if (lesson.satisfaction > 0) {
+                            impossibleLessons.push(lesson);
+                        } else {
+                            break;
+                        }
+
+                        continue;
+                    }
 
                     if (lesson.status[this.alias] === "EE") {
                         // No more free lessons left
-                        if (freeLeft <= 0) continue;
+                        if (freeLeft <= 0) {
+                            impossibleLessons.push(lesson);
+                            continue;
+                        }
 
                         freeLeft--;
                     }
@@ -93,24 +114,20 @@
                     lessonsLeft--;
                 }
 
+                output["chosen"] = result;
+                output["impossible"] = impossibleLessons;
+
+                console.log(impossibleLessons)
+
                 // Step 3: Calculate statistics
-                result["satisfaction"] = _.reduce(result, function (value, lesson) {
+                output["satisfaction"] = _.reduce(result, function (value, lesson) {
                     return value + lesson["satisfaction"]
                 }, 0);
-
-                // // Calculate statistics
-                // var maxSector = null;
-                // for (var sec in result[sem]) {
-                //     if (maxSector === null || result[sem][sec]["satisfaction"] > result[sem][maxSector]["satisfaction"]) {
-                //         maxSector = sec;
-                //     }
-                // }
-                // result[sem]["maxSector"] = maxSector;
 
                 // Emit the update event for the parent Vue component
                 this.$emit('update:results', result);
 
-                return result;
+                return output;
             }
         }
     }
