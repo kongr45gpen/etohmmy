@@ -50,6 +50,7 @@ semesters:
         skills: ''
     - name: Ηλεκτρικές Μετρήσεις 2
       qa: 'https://qa.auth.gr/el/class/1/600111368'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65524.0'
       sector: el
       status:
         en: E
@@ -82,6 +83,7 @@ semesters:
           αποφάσεωνΟμαδική εργασία
     - name: Μετάδοση Θερμότητας
       qa: 'https://qa.auth.gr/el/class/1/600111370'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65526.0'
       sector: en
       status:
         en: Y
@@ -114,6 +116,7 @@ semesters:
         skills: ''
     - name: Οπτική 1
       qa: 'https://qa.auth.gr/el/class/1/600111374'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65518.0'
       sector: tel
       status:
         en: EE
@@ -174,6 +177,7 @@ semesters:
           επαγωγικής σκέψης
     - name: Ακουστική 1
       qa: 'https://qa.auth.gr/el/class/1/600111375'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65515.0'
       sector: tel
       status:
         en: EE
@@ -196,6 +200,7 @@ semesters:
         skills: Εφαρμογή της γνώσης στην πράξη
     - name: Ηλεκτρακουστική 1
       qa: 'https://qa.auth.gr/el/class/1/600111378'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65517.0'
       sector: tel
       status:
         en: E
@@ -239,6 +244,7 @@ semesters:
           εργασία
     - name: Εισαγωγή στις Εφαρμογές της Πυρηνικής Τεχνολογίας
       qa: 'https://qa.auth.gr/el/class/1/600111386'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65519.0'
       sector: en
       status:
         en: E
@@ -296,6 +302,7 @@ semesters:
           και πληροφοριών, με τη χρήση και των απαραίτητων τεχνολογιών
     - name: 'Ημιαγωγά Υλικά: Θεωρία - Διατάξεις'
       qa: 'https://qa.auth.gr/el/class/1/600111387'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65522.0'
       sector: en
       status:
         en: E
@@ -337,6 +344,7 @@ semesters:
           ερευνητικών ιδεών
     - name: Κβαντική Φυσική
       qa: 'https://qa.auth.gr/el/class/1/600111388'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65611.0'
       sector: quantum
       status:
         en: EE
@@ -361,8 +369,9 @@ semesters:
         skills: >-
           Αναζήτηση, ανάλυση και σύνθεση δεδομένων και πληροφοριών, με τη χρήση
           και των απαραίτητων τεχνολογιών
-    - name: Συστήματα Ηλεκτρ. Ενέργειας 1
+    - name: Συστήματα Ηλεκτρικής Ενέργειας 1
       qa: 'https://qa.auth.gr/el/class/1/600111392'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=14577.0'
       sector: en
       status:
         en: Y
@@ -408,6 +417,7 @@ semesters:
     - name: Υψηλές Τάσεις 1
       qa: 'https://qa.auth.gr/el/class/1/600111398'
       sector: en
+      thmmy: 'https://www.thmmy.gr/smf/index.php?board=90.0'
       status:
         en: Y
         el: EE
@@ -446,6 +456,7 @@ semesters:
         skills: ''
     - name: Ηλεκτρονική 3
       qa: 'https://qa.auth.gr/el/class/1/600111413'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65523.0'
       sector: el
       status:
         en: E
@@ -513,6 +524,7 @@ semesters:
           και πληροφοριών, με τη χρήση και των απαραίτητων τεχνολογιών
     - name: Ρομποτική
       qa: 'https://qa.auth.gr/el/class/1/600111420'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65609.0'
       sector: el
       status:
         en: E
@@ -563,6 +575,7 @@ semesters:
         skills: Εφαρμογή της γνώσης στην πράξηΛήψη αποφάσεωνΑυτόνομη εργασία
     - name: Τεχνολογία Λογισμικού
       qa: 'https://qa.auth.gr/el/class/1/600111440'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65525.0'
       sector: el
       status:
         tel: E
@@ -628,6 +641,7 @@ semesters:
           εργασίαΣχεδιασμός και διαχείριση έργων
     - name: Τεχνικές Βελτιστοποίησης
       qa: 'https://qa.auth.gr/el/class/1/600111447'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65607.0'
       sector: el
       status:
         en: E
@@ -650,6 +664,7 @@ semesters:
         skills: ''
     - name: Εφαρμοσμένα Μαθηματικά 2
       qa: 'https://qa.auth.gr/el/class/1/600111496'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65516.0'
       sector: tel
       status:
         en: EE
@@ -722,6 +737,7 @@ semesters:
           της ελεύθερης, δημιουργικής και επαγωγικής σκέψης
     - name: Διακριτά Μαθηματικά
       qa: 'https://qa.auth.gr/el/class/1/600111461'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65610.0'
       sector: el
       status:
         en: EE
@@ -764,6 +780,7 @@ semesters:
           της ελεύθερης, δημιουργικής και επαγωγικής σκέψης
     - name: Επιχειρησιακή Έρευνα
       qa: 'https://qa.auth.gr/el/class/1/600111467'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65610.0'
       sector: el
       status:
         en: E
@@ -787,6 +804,7 @@ semesters:
         skills: ''
     - name: Ανάλυση & Σχεδιασμός Αλγορίθμων
       qa: 'https://qa.auth.gr/el/class/1/600111483'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65608.0'
       sector: el
       status:
         en: EE
@@ -883,6 +901,7 @@ semesters:
         el: E
         tel: EE
       qa: 'https://qa.auth.gr/el/class/1/600106834'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66901.0'
       professors:
         - Ζωή Δουλγέρη
       description:
@@ -947,6 +966,7 @@ semesters:
         el: EE
         tel: EE
       qa: 'https://qa.auth.gr/el/class/1/600106841'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=69782.0'
       professors:
         - Αλέξανδρος Κλούβας
         - Στυλιανή Καδή
@@ -982,6 +1002,7 @@ semesters:
         el: EE
         tel: EE
       qa: 'https://qa.auth.gr/el/class/1/600106842'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=69783.0'
       professors:
         - Γεώργιος Λιτσαρδάκης
       description:
@@ -1003,6 +1024,7 @@ semesters:
       humanCode: ΓΕ1502
       originalTitle: ΑΚΟΥΣΤΙΚΗ ΙΙ
       name: Ακουστική 2
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66943.0'
       sector: tel
       ects: 3
       status:
@@ -1037,6 +1059,7 @@ semesters:
       humanCode: ΗΥ3102
       originalTitle: ΠΡΟΣΟΜΟΙΩΣΗ ΚΑΙ ΜΟΝΤΕΛΟΠΟΙΗΣΗ ΣΥΣΤΗΜΑΤΩΝ
       name: Προσομοίωση & Μοντελοποίηση Συστημάτων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66900.0'
       sector: el
       ects: 5
       status:
@@ -1054,6 +1077,7 @@ semesters:
       humanCode: ΗΥ2802
       originalTitle: ΘΕΩΡΙΑ ΥΠΟΛΟΓΙΣΜΩΝ ΚΑΙ ΑΛΓΟΡΙΘΜΩΝ
       name: Θεωρία Υπολογισμών & Αλγορίθμων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66898.0'
       sector: el
       ects: 4
       status:
@@ -1115,6 +1139,7 @@ semesters:
       humanCode: ΗΥ1501
       originalTitle: ΛΕΙΤΟΥΡΓΙΚΑ ΣΥΣΤΗΜΑΤΑ
       name: Λειτουργικά Συστήματα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66903.0'
       sector: el
       ects: 4
       status:
@@ -1154,6 +1179,7 @@ semesters:
       humanCode: ΓΕ1901
       originalTitle: ΒΙΟΪΑΤΡΙΚΗ ΤΕΧΝΟΛΟΓΙΑ
       name: Βιοϊατρική Τεχνολογία
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=69946.0'
       sector: tel
       ects: 3
       status:
@@ -1181,6 +1207,7 @@ semesters:
       humanCode: ΓΕ1802
       originalTitle: ΗΛΕΚΤΡΑΚΟΥΣΤΙΚΗ ΙΙ
       name: Ηλεκτρακουστική 2
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=67359.0'
       sector: tel
       ects: 5
       status:
@@ -1256,6 +1283,7 @@ semesters:
         el: EE
         tel: E
       qa: 'https://qa.auth.gr/el/class/1/600106864'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=70023.0'
       professors:
         - Βασίλειος Χατζηαθανασίου
         - Στυλιανή Καδή
@@ -1280,6 +1308,7 @@ semesters:
       humanCode: ΗΥ0701
       originalTitle: ΔΙΚΤΥΑ ΥΠΟΛΟΓΙΣΤΩΝ Ι
       name: Δίκτυα Υπολογιστών 1
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66904.0'
       sector: el
       ects: 5
       status:
@@ -1364,6 +1393,7 @@ semesters:
       originalTitle: ΣΥΝΘΕΣΗ ΕΝΕΡΓΩΝ ΚΑΙ ΠΑΘΗΤΙΚΩΝ ΚΥΚΛΩΜΑΤΩΝ
       ects: 5
       name: Σύνθεση Ενεργών & Παθητικών Κυκλωμάτων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66902.0'
       sector: el
       status:
         en: EE
@@ -1441,6 +1471,7 @@ semesters:
       humanCode: ΗΚ0705
       originalTitle: ΠΡΟΓΡΑΜΜΑΤΙΖΟΜΕΝΑ ΚΥΚΛΩΜΑΤΑ ASIC
       name: Προγραμματιζόμενα Κυκλώματα ASIC
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65267.0'
       sector: el
       ects: 4
       status:
@@ -1499,6 +1530,7 @@ semesters:
       humanCode: ΗΥ2501
       originalTitle: ΣΥΣΤΗΜΑΤΑ ΜΙΚΡΟΫΠΟΛΟΓΙΣΤΩΝ
       name: Συστήματα Μικροϋπολογιστών
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66930.0'
       sector: el
       ects: 5
       status:
@@ -1552,6 +1584,7 @@ semesters:
       humanCode: ΗΥ3603
       originalTitle: ΠΑΡΑΛΛΗΛΑ ΚΑΙ ΔΙΑΝΕΜΗΜΕΝΑ ΣΥΣΤΗΜΑΤΑ
       name: Παράλληλα & Διανεμημένα Συστήματα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66899.0'
       sector: el
       ects: 5
       status:
@@ -1645,6 +1678,7 @@ semesters:
         el: E
         tel: EE
       qa: 'https://qa.auth.gr/el/class/1/600106932'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=56796.0'
       professors:
         - Χρήστος Μαδεμλής
       description:
@@ -1692,6 +1726,7 @@ semesters:
       humanCode: ΤΗ0601
       originalTitle: ΑΣΥΡΜΑΤΟΣ ΤΗΛΕΠΙΚΟΙΝΩΝΙΑ Ι
       name: Ασύρματη Τηλεπικοινωνία 1
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=67141.0'
       sector: tel
       ects: 5
       status:
@@ -1734,6 +1769,7 @@ semesters:
       originalTitle: ΧΡΟΝΟΣΕΙΡΕΣ
       ects: 4
       name: Χρονοσειρές
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66897.0'
       sector: times
       status:
         en: E
@@ -1761,6 +1797,7 @@ semesters:
       originalTitle: ΨΗΦΙΑΚΗ ΕΠΕΞΕΡΓΑΣΙΑ ΣΗΜΑΤΟΣ
       ects: 5
       name: Ψηφιακή Επεξεργασία Σήματος
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=66931.0'
       sector: tel
       status:
         en: E
@@ -1826,6 +1863,7 @@ semesters:
       humanCode: ΗΥ1601
       originalTitle: ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ
       name: Τεχνολογία Λογισμικού
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65525.0'
       sector: el
       ects: 5
       status:
@@ -1892,6 +1930,7 @@ semesters:
       humanCode: ΗΚ0601
       originalTitle: ΑΣΑΦΗ ΣΥΣΤΗΜΑΤΑ
       name: Ασαφή Συστήματα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65264.0'
       sector: el
       ects: 5
       status:
@@ -1964,6 +2003,7 @@ semesters:
       humanCode: ΗΛ0401
       originalTitle: ΨΗΦΙΑΚΑ ΦΙΛΤΡΑ
       name: Ψηφιακά Φίλτρα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65569.0'
       sector: el
       ects: 4
       status:
@@ -1992,6 +2032,7 @@ semesters:
       humanCode: ΓΕ2602
       originalTitle: ΠΡΟΗΓΜΕΝΕΣ ΤΕΧΝΙΚΕΣ ΕΠΕΞΕΡΓΑΣΙΑΣ ΣΗΜΑΤΟΣ
       name: Προηγμένες Τεχνικές Επεξεργασίας Σήματος
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65570.0'
       sector: tel
       ects: 4
       status:
@@ -2033,6 +2074,7 @@ semesters:
       humanCode: ΗΛ0203
       originalTitle: ΨΗΦΙΑΚΑ ΣΥΣΤΗΜΑΤΑ ΙΙΙ
       name: Ψηφιακά Συστήματα 3
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65540.0'
       sector: el
       ects: 4
       status:
@@ -2200,6 +2242,7 @@ semesters:
       humanCode: ΗΛ0901
       originalTitle: ΤΗΛΕΠΙΚΟΙΝΩΝΙΑΚΗ ΗΛΕΚΤΡΟΝΙΚΗ
       name: Τηλεπικοινωνιακή Ηλεκτρονική
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65539.0'
       sector: el
       ects: 4
       status:
@@ -2232,6 +2275,7 @@ semesters:
       humanCode: ΓΕ1301
       originalTitle: ΨΗΦΙΑΚΗ ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΚΟΝΑΣ
       name: Ψηφιακή Επεξεργασία Εικόνας
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65250.0'
       sector: el
       ects: 5
       status:
@@ -2285,6 +2329,7 @@ semesters:
       humanCode: ΕΝ1205
       originalTitle: ΥΨΗΛΕΣ ΤΑΣΕΙΣ 3
       name: Υψηλές Τάσεις 3
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65558.0'
       sector: en
       ects: 4
       status:
@@ -2321,6 +2366,7 @@ semesters:
       humanCode: ΕΝ0105
       originalTitle: ΔΙΑΝΕΜΗΜΕΝΗ ΠΑΡΑΓΩΓΗ
       name: Διανεμημένη Παραγωγή
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65561.0'
       sector: en
       ects: 4
       status:
@@ -2377,6 +2423,7 @@ semesters:
       humanCode: ΗΛ0301
       originalTitle: ΗΛΕΚΤΡΟΝΙΚΑ ΙΣΧΥΟΣ Ι
       name: Ηλεκτρονικά Ισχύος 1
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65541.0'
       sector: en
       ects: 5
       status:
@@ -2451,7 +2498,8 @@ semesters:
     - code: '600111396'
       humanCode: ΕΝ0406
       originalTitle: ΔΙΑΧΕΙΡΙΣΗ ΣΥΣΤΗΜΑΤΩΝ ΗΛΕΚΤΡΙΚΗΣ ΕΝΕΡΓΕΙΑΣ
-      name: Διαχείρηση Συστημάτων Ηλεκτρικής Ενέργειας
+      name: Διαχείριση Συστημάτων Ηλεκτρικής Ενέργειας
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65562.0'
       sector: en
       ects: 4
       status:
@@ -2485,6 +2533,7 @@ semesters:
       humanCode: ΗΜ0303
       originalTitle: ΥΠΟΛΟΓΙΣΤΙΚΟΣ ΗΛΕΚΤΡΟΜΑΓΝΗΤΙΣΜΟΣ
       name: Υπολογιστικός Ηλεκτρομαγνητισμός
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65559.0'
       sector: tel
       ects: 4
       status:
@@ -2538,6 +2587,7 @@ semesters:
       humanCode: ΗΥ0502
       originalTitle: ΘΕΩΡΙΑ ΠΛΗΡΟΦΟΡΙΩΝ
       name: Θεωρία Πληροφοριών
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65542.0'
       sector: tel
       ects: 4
       status:
@@ -2569,6 +2619,7 @@ semesters:
       humanCode: ΗΥ0901
       originalTitle: ΜΙΚΡΟΕΠΕΞΕΡΓΑΣΤΕΣ ΚΑΙ ΠΕΡΙΦΕΡΕΙΑΚΑ
       name: Μικροεπεξεργαστές & Περιφερειακά
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65556.0'
       sector: el
       ects: 4
       status:
@@ -2622,6 +2673,7 @@ semesters:
         el: E
         tel: EE
       qa: 'https://qa.auth.gr/el/class/1/600111453'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65538.0'
       professors:
         - Νικόλαος Πιτσιάνης
       description:
@@ -2718,6 +2770,7 @@ semesters:
       humanCode: ΗΥ0702
       originalTitle: ΔΙΚΤΥΑ ΥΠΟΛΟΓΙΣΤΩΝ ΙΙ
       name: Δίκτυα Υπολογιστών 2
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65560.0'
       sector: el
       ects: 4
       status:
@@ -2760,6 +2813,7 @@ semesters:
       humanCode: ΗΥ1701
       originalTitle: ΓΡΑΦΙΚΗ ΜΕ ΥΠΟΛΟΓΙΣΤΕΣ
       name: Γραφική με Υπολογιστές
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65266.0'
       sector: el
       ects: 5
       status:
@@ -2832,6 +2886,7 @@ semesters:
       humanCode: ΟΙ0105
       originalTitle: ΑΡΧΕΣ ΟΙΚΟΝΟΜΙΑΣ
       name: Αρχές Οικονομίας
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65563.0'
       sector: economics
       ects: 4
       status:
@@ -2872,6 +2927,7 @@ semesters:
       humanCode: ΟΙ0403
       originalTitle: ΕΙΣΑΓΩΓΗ ΣΤΗΝ ΠΟΛΙΤΙΚΗ ΟΙΚΟΝΟΜΙΑ
       name: Εισαγωγή στην Πολιτική Οικονομία
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=67514.0'
       sector: economics
       ects: 5
       status:
@@ -2922,6 +2978,7 @@ semesters:
       humanCode: ΤΗ0501
       originalTitle: ΔΙΚΤΥΑ ΤΗΛΕΠΙΚΟΙΝΩΝΙΩΝ
       name: Δίκτυα Τηλεπικοινωνιών
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65557.0'
       sector: tel
       ects: 5
       status:
@@ -2957,6 +3014,7 @@ semesters:
       humanCode: ΤΗ0901
       originalTitle: ΘΕΩΡΙΑ ΣΚΕΔΑΣΗΣ
       name: Θεωρία Σκέδασης
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65568.0'
       sector: tel
       ects: 4
       status:
@@ -2988,6 +3046,7 @@ semesters:
       humanCode: ΤΗ1002
       originalTitle: ΕΦΑΡΜΟΓΕΣ ΤΗΛΕΠΙΚΟΙΝΩΝΙΑΚΩΝ ΔΙΑΤΑΞΕΩΝ
       name: Εφαρμογές Τηλεπικοινωνιακών Διατάξεων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65571.0'
       sector: tel
       ects: 4
       status:
@@ -3036,6 +3095,7 @@ semesters:
       humanCode: ΤΗ2402
       originalTitle: ΟΠΤΙΚΕΣ ΕΠΙΚΟΙΝΩΝΙΕΣ
       name: Οπτικές Επικοινωνίες
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=64289.0'
       sector: tel
       ects: 5
       status:
@@ -3106,6 +3166,7 @@ semesters:
       humanCode: ΤΗ0801
       originalTitle: ΕΙΔΙΚΕΣ ΚΕΡΑΙΕΣ. ΣΥΝΘΕΣΗ ΚΕΡΑΙΩΝ
       name: Ειδικές Κεραίες. Σύνθεση Κεραιών.
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65567.0'
       sector: tel
       ects: 5
       status:
@@ -3193,6 +3254,7 @@ semesters:
       humanCode: ΤΗ1501
       originalTitle: ΤΗΛΕΟΠΤΙΚΑ ΣΥΣΤΗΜΑΤΑ
       name: Τηλεοπτικά Συστήματα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65566.0'
       sector: tel
       ects: 5
       status:
@@ -3231,6 +3293,7 @@ semesters:
       humanCode: ΓΕ2701
       originalTitle: ΤΕΧΝΙΚΕΣ ΜΗ ΚΑΤΑΣΤΡΕΠΤΙΚΩΝ ΔΟΚΙΜΩΝ
       name: Τεχνικές Μη Καταστρεπτικών Δοκιμών
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65248.0'
       sector: tel
       ects: 4
       status:
@@ -3283,6 +3346,7 @@ semesters:
       humanCode: ΕΝ1209
       originalTitle: ΣΕΡΒΟΚΙΝΗΤΗΡΙΑ ΣΥΣΤΗΜΑΤΑ
       name: Σερβοκινητήρια Συστήματα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65244.0'
       sector: en
       ects: 4
       status:
@@ -3342,6 +3406,7 @@ semesters:
       humanCode: ΤΗ3006
       originalTitle: ΤΕΧΝΙΚΕΣ ΚΩΔΙΚΟΠΟΙΗΣΗΣ
       name: Τεχνικές Κωδικοποίησης
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=67213.0'
       sector: tel
       ects: 4
       status:
@@ -3359,6 +3424,7 @@ semesters:
       humanCode: ΗΛ0701
       originalTitle: ΕΥΦΥΗ ΣΥΣΤΗΜΑΤΑ ΡΟΜΠΟΤ
       name: Ευφυή Συστήματα Ρομπότ
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65239.0'
       sector: el
       ects: 5
       status:
@@ -3424,6 +3490,7 @@ semesters:
       humanCode: ΗΥ2902
       originalTitle: ΣΥΣΤΗΜΑΤΑ ΠΟΛΥΜΕΣΩΝ ΚΑΙ ΕΙΚΟΝΙΚΗ ΠΡΑΓΜΑΤΙΚΟΤΗΤΑ
       name: Συστήματα Πολυμέσων & Εικονική Πραγματικότητα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65208.0'
       sector: el
       ects: 5
       status:
@@ -3474,6 +3541,7 @@ semesters:
       humanCode: ΕΝ1104
       originalTitle: ΥΨΗΛΕΣ ΤΑΣΕΙΣ 4
       name: Υψηλές Τάσεις 4
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65256.0'
       sector: en
       ects: 3
       status:
@@ -3610,6 +3678,7 @@ semesters:
       humanCode: ΟΙ0107
       originalTitle: ΟΡΓΑΝΩΣΗ ΚΑΙ ΔΙΟΙΚΗΣΗ ΕΡΓΟΣΤΑΣΙΩΝ
       name: Οργάνωση & Διοίκηση Εργοστασίων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=69963.0'
       sector: economics
       ects: 4
       status:
@@ -3711,6 +3780,7 @@ semesters:
       humanCode: ΗΛ0302
       originalTitle: ΗΛΕΚΤΡΟΝΙΚΑ ΙΣΧΥΟΣ ΙΙ
       name: Ηλεκτρονικά Ισχύος 2
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65254.0'
       sector: en
       ects: 5
       status:
@@ -3751,6 +3821,7 @@ semesters:
       originalTitle: 'ΤΕΧΝΟΛΟΓΙΑ ΤΟΥ ΗΧΟΥ ΚΑΙ ΤΗΣ ΕΙΚΟΝΑΣ: ΑΠΟΘΗΚΕΥΣΗ, ΕΠΕΞΕΡΓΑΣΙΑ, ΜΕΤΑΔΟΣΗ'
       ects: 3
       name: "Τεχνολογία του Ήχου και της Εικόνας: Αποθήκευση, Επεξεργασία, Μετάδοση"
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65251.0'
       sector: tel
       status:
         en: EE
@@ -3787,6 +3858,7 @@ semesters:
       humanCode: ΗΛ1101
       originalTitle: ΣΧΕΔΙΑΣΗ ΣΥΣΤΗΜΑΤΩΝ VLSI
       name: Σχεδίαση Συστημάτων VLSI
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65240.0'
       sector: el
       ects: 4
       status:
@@ -3818,6 +3890,7 @@ semesters:
       humanCode: ΗΥ1001
       originalTitle: ΒΑΣΕΙΣ ΔΕΔΟΜΕΝΩΝ
       name: Βάσεις Δεδομένων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65242.0'
       sector: el
       ects: 4
       status:
@@ -3904,6 +3977,7 @@ semesters:
         el: E
         tel: EE
       qa: 'https://qa.auth.gr/el/class/1/600106907'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65241.0'
       professors:
         - Γεώργιος Χασάπης
       description:
@@ -3945,6 +4019,7 @@ semesters:
     - code: '600106913'
       humanCode: ΗΥ2700
       originalTitle: ΑΣΦΑΛΕΙΑ ΥΠΟΛΟΓΙΣΤΙΚΩΝ ΣΥΣΤΗΜΑΤΩΝ
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65243.0'
       name: Ασφάλεια Υπολογιστικών Συστημάτων
       sector: el
       ects: 3
@@ -4097,6 +4172,7 @@ semesters:
       humanCode: ΗΥ1401
       originalTitle: ΑΝΑΓΝΩΡΙΣΗ ΠΡΟΤΥΠΩΝ
       name: Αναγνώριση Προτύπων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65252.0'
       sector: el
       ects: 5
       status:
@@ -4157,6 +4233,7 @@ semesters:
       humanCode: ΕΝ1207
       originalTitle: ΥΠΟΛΟΓΙΣΤΙΚΕΣ ΜΕΘΟΔΟΙ ΣΤΑ ΕΝΕΡΓΕΙΑΚΑ ΣΥΣΤΗΜΑΤΑ
       name: Υπολογιστικές Μέθοδοι στα Ενεργειακά Συστήματα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65257.0'
       sector: en
       ects: 4
       status:
@@ -4214,6 +4291,7 @@ semesters:
         el: E
         tel: EE
       qa: 'https://qa.auth.gr/el/class/1/600106938'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65245.0'
       professors:
         - Αναστάσιος Μπακιρτζής
         - Παντελής Μπίσκας
@@ -4253,6 +4331,7 @@ semesters:
       humanCode: ΤΗ3010
       originalTitle: ΚΙΝΗΤΕΣ ΚΑΙ ΔΟΡΥΦΟΡΙΚΕΣ ΕΠΙΚΟΙΝΩΝΙΕΣ
       name: Κινητές & Δορυφορικές Επικοινωνίες
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65246.0'
       sector: tel
       ects: 5
       status:
@@ -4282,6 +4361,7 @@ semesters:
       humanCode: ΤΗ1001
       originalTitle: ΣΥΝΘΕΣΗ ΤΗΛΕΠΙΚΟΙΝΩΝΙΑΚΩΝ ΔΙΑΤΑΞΕΩΝ
       name: Σύνθεση Τηλεπικοινωνιακών Διατάξεων
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=70046.0'
       sector: tel
       ects: 4
       status:
@@ -4319,6 +4399,7 @@ semesters:
         el: EE
         tel: E
       qa: 'https://qa.auth.gr/el/class/1/600106959'
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=69781.0'
       professors:
         - Εμμανουήλ Κριεζής
       description:
@@ -4354,6 +4435,7 @@ semesters:
       humanCode: ΤΗ3008
       originalTitle: ΕΥΡΥΖΩΝΙΚΑ ΔΙΚΤΥΑ
       name: Ευρυζωνικά Δίκτυα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65247.0'
       sector: tel
       ects: 4
       status:
@@ -4383,6 +4465,7 @@ semesters:
       humanCode: ΤΗ3009
       originalTitle: ΗΛΕΚΤΡΟΜΑΓΝΗΤΙΚΗ ΣΥΜΒΑΤΟΤΗΤΑ
       name: Ηλεκτρομαγνητική Συμβατότητα
+      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65249.0'
       sector: tel
       ects: 4
       status:

@@ -27,8 +27,11 @@
                     <input title="Βαθμολογία" type="range" min="-10" max="10" step="0.1" data-value="0" v-model.number="lesson.satisfaction" v-on:click.stop v-on:change="changeCompleted">
                 </div>
             <!--<span class="col d-flex">-->
-                <a v-bind:href="lesson.qa" class="lesson-utility-icon" v-on:click.stop>
+                <a v-if="lesson.thmmy !== undefined" v-bind:href="lesson.thmmy" class="lesson-utility-icon" v-on:click.stop>
                     <font-awesome-icon :icon="faComment" fixed-width />
+                </a>
+                <a v-else class="lesson-utility-icon">
+                    <i class="fa fa-w-18 d-sm-inline-block fa-fw"></i>
                 </a>
                 <a v-bind:href="lesson.qa" class="lesson-utility-icon" v-on:click.stop>
                     <font-awesome-icon :icon="faInfo" fixed-width />
