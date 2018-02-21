@@ -101,7 +101,10 @@ SECTOR COLOURS
 }
 
 .lesson-list-range {
-    margin-right: $spacer;
+    margin-right: 0;
+    @include media-breakpoint-up(sm) {
+        margin-right: $spacer;
+    }
     //height: 0.5rem;
     input {
         vertical-align: middle;
@@ -129,6 +132,10 @@ SECTOR COLOURS
     @include media-breakpoint-down(lg) {
         font-size: 85%;
         margin-right: 0.2rem;
+    }
+
+    @include media-breakpoint-down(xs) {
+        display: none;
     }
 }
 
@@ -174,6 +181,9 @@ $property-key-size: 35%;
     @include media-breakpoint-up(sm) {
         flex: 0 1 $property-key-size-sm;
         width: $property-key-size-sm;
+    }
+    @include media-breakpoint-down(xs) {
+        font-size: 85%;
     }
 
     padding-right: 0.5 * $spacer;

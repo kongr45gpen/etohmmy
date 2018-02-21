@@ -69,12 +69,27 @@
                     </div>
                 </div>
 
-                <div class="row no-gutters" v-if="$sectors[lesson.sector] !== undefined">
-                    <strong class="lesson-property-key">Τομέας</strong>
+                <div class="row no-gutters" v-if="lesson.qa !== undefined">
+                    <strong class="lesson-property-key">Πληροφορίες</strong>
                     <span class="lesson-property-value">
-                        {{  $sectors[lesson.sector].subtitle_name  }}
+                        <a :href="lesson.qa">{{  lesson.qa  }}</a>
                     </span>
                 </div>
+
+                <div class="row no-gutters" v-if="lesson.thmmy !== undefined">
+                    <strong class="lesson-property-key">Συζήτηση</strong>
+                    <span class="lesson-property-value">
+                        <a :href="lesson.thmmy">{{  lesson.thmmy  }}</a>
+                    </span>
+                </div>
+
+                <!-- Hidden so as not to influence the decision -->
+                <!--<div class="row no-gutters" v-if="$sectors[lesson.sector] !== undefined">-->
+                    <!--<strong class="lesson-property-key">Τομέας</strong>-->
+                    <!--<span class="lesson-property-value">-->
+                        <!--{{  $sectors[lesson.sector].subtitle_name  }}-->
+                    <!--</span>-->
+                <!--</div>-->
 
                 <div class="row no-gutters align-items-center">
                     <strong class="lesson-property-key">Βαθμολογία</strong>
