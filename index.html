@@ -19,13 +19,16 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" role="navigation">
         <a class="navbar-brand mr-auto" href="#">Βοηθός Επιλογής Τομέα ΗΜΜΥ</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">-->
+            <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
         <div class="navbar-text nav-item mx-3" v-show="webpack_reload_count">
             {{ webpack_reload_count }} {{ webpack_reload_count === 1 ? "update" : "updates" }}
         </div>
-        <div class="form-inline my-2 my-lg-0 nav-item">
+        <div class="form-inline my-2 my-lg-0 mx-2 nav-item">
+            <a class="btn btn-outline-secondary my-2 my-sm-0" href="https://github.com/kongr45gpen/etohmmy">Source Code @ Github</a>
+        </div>
+        <div class="form-inline my-2 my-lg-0 mx-2 nav-item">
             <button class="btn btn-outline-secondary my-2 my-sm-0" v-on:click="reset">Reset</button>
         </div>
     </nav>
@@ -34,8 +37,38 @@
         <div class="">
             <h1>Βοηθός Επιλογής Τομέα ΗΜΜΥ</h1>
             <p class="lead">Καλώς ήλθατε στον Βοηθό Επιλογής Τομέα ΗΜΜΥ!</p>
-            Ο Βοηθός αυτός θα σας βοηθήσει να επιλέξετε τομέα ΗΜΜΥ.
+
+            <p>Για να χρησιμοποιήσετε τη σελίδα αυτή, πρέπει να καταχωρήσετε το βαθμό προτίμησής σας
+            για κάθε ένα από τα {{ activeLessons }} μαθήματα των τομέων. Η βαθμολογία <span class="badge badge-dark">-10</span>
+            αντιστοιχεί σε μάθημα που δεν επιθυμείτε καθόλου να επιλέξετε, η βαθμολογία <span class="badge badge-dark">0</span>
+            αντιστοιχεί σε αδιάφορο μάθημα, και η βαθμολογία <span class="badge badge-dark">10</span> αντιστοιχεί σε μάθημα
+                που θέλετε σίγουρα να παρακολουθήσετε.</p>
+
+            <p><span class="d-none d-md-inline">Στα δεξιά της επιλογής</span><span class="d-md-none">Κάτω από την επιλογή</span>
+                των μαθημάτων για το κάθε εξάμηνο φαίνεται η προτεινόμενη διαμόρφωση επιλογής των
+            επιλογών για τον κάθε τομέα. Στο τέλος της φόρμας βρίσκονται οι προτεινόμενοι τομείς
+            για τα επόμενα 4 εξάμηνα.</p>
+
+            <div class="alert alert-danger">
+                <p><strong>Προσοχή!</strong>
+                Η εφαρμογή αυτή έχει ρόλο μόνο βοηθητικό ως προς την επιλογή του τομέα ή των επιλεγόμενων
+                μαθημάτων. Για την προσωπική σας επιλογή καλό είναι να λάβετε υπ' όψιν τους παράγοντες
+                που εσείς θεωρείτε σημαντικούς, όπως <span style="display: none;" :style="{display: 'inline'}">
+                {{ $Choice_Factors_Literature }}, &hellip;</span></p>
+
+                <p class="m-0">Τα εμφανιζόμενα μαθήματα βασίζονται στο πρόγραμμα σπουδών 2017-18. Είναι πολύ πιθανό αργότερα
+                μαθήματα μεγαλύτερων εξαμήνων να αφαιρεθούν ή να προστεθούν, ανάλογα με τη διαθεσιμότητα
+                των καθηγητών.</p>
+            </div>
+
+            <div class="alert alert-danger" v-if="false">
+                <p>Η εφαρμογή αυτή απαιτεί <strong>Javascript</strong> για να λειτουργήσει, καθώς οι
+                υπολογισμοί γίνονται τοπικά.</p>
+
+                <p class="m-0">Παρακαλώ ενεργοποιήστε την Javascript ώστε να έχετε πρόσβαση στις λειτουργίες της.</p>
+            </div>
         </div>
+        <hr />
         <div>
             <p class="lead text-center">
                 Προαιρετικά, διαλέξτε <i>έναν</i> τομέα που <strong>δεν</strong> θα πάρετε:

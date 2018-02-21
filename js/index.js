@@ -14,8 +14,9 @@ import '../css/main.css'
 import '../index.html'
 
 const Max_Satisfaction = 10;
+const Total_Lessons = _.sum(Array.from(_.map(Lessons["semesters"], sem => sem.length)));
 
-console.log("Welcome to BETHMMY.");
+console.log("Welcome to BETHMMY. Counting " + _.size(Lessons["semesters"]) + " semesters and " + Total_Lessons + " lessons.");
 // TODO: Localstorage versioning
 
 // Initialise vue variables
@@ -38,6 +39,10 @@ Vue.filter('nl2br', function (str) {
 Vue.prototype.$sectors = Lessons["sectors"];
 Vue.prototype.$fakeSectors = Lessons["fake_sectors"];
 Vue.prototype.$MaxSatisfaction = Max_Satisfaction;
+Vue.prototype.$Total_Lessons = Total_Lessons;
+Vue.prototype.$Choice_Factors_Literature = _.shuffle(['καθηγητές','εργαστήρια','ωρολόγιο πρόγραμμα','παρέες','δυνατότητες για διπλωματική',
+    'απόψεις από το thmmy','υπάρχον υλικό για τα μαθήματα','επισκέψεις στις παραδόσεις',
+    'συγκρούσεις ωρών μαθημάτων']).join(', ');
 Vue.prototype.$getSatisfactionToColour = function(saturation = 1, brightness = 1, opacity = 1, override = false) {
     const maxValue = 255.0 * brightness;
 
@@ -69,6 +74,14 @@ let app = new Vue({
         semesters: Lessons["semesters"],
         results: {},
         webpack_reload_count: 0
+    },
+    computed: {
+        activeLessons: function() {
+            return _.sum(
+                Array.from(_.map(this.semesters,
+                    sem => _.sumBy(sem, l => !l.deselected ? 1 : 0)
+                )))
+        }
     },
     components: {
         Semester, TotalResults, Deselect
