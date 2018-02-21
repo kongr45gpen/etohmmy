@@ -67,7 +67,7 @@
                 let lessons = _.clone(this.lessons);
 
                 // If we have lessons from an odd semester, add them!
-                if (this.oddSemesterResults !== undefined) {
+                if (this.oddSemesterResults !== undefined && this.alias === "el") {
                     // TODO: Too many hardcoded values
                     _.each(this.oddSemesterResults.impossible["el"], function (l) {
                         lessons.push(l);
