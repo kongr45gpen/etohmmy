@@ -26,6 +26,7 @@ _.each(Lessons["semesters"], function(s, skey) {
 
         l["satisfaction"] = (!isNaN(storedValue)) ? storedValue : 0.0;
         l["deselected"] = false;
+        l["semester"] = skey;
     })
 });
 

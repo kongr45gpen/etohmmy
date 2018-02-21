@@ -7,7 +7,7 @@
         <div class="card-body">
         <h6 class="card-title">Άλλα Μαθήματα</h6>
         <p class="card-text text-muted result-other-lessons">
-            <span v-for="lesson in results.impossible">
+            <span v-for="lesson in results.impossible" v-if="lesson.satisfaction > 0.001">
                 {{ lesson.name }} <span class="badge badge-light float-right">{{ lesson.satisfaction.toFixed(1) }}</span><br>
             </span>
         </p>
@@ -28,6 +28,7 @@
 
     const Max_Lessons = 7;
     const Free_Lessons = 1;
+    const Odd_Lessons = 2;
 
     export default {
         name: "SectorResults",
@@ -43,6 +44,9 @@
             },
             alias: {
                 type: String
+            },
+            oddSemesterResults: {
+                type: Object
             }
         },
         components: {LessonResults},
@@ -50,6 +54,7 @@
             results: function () {
                 let lesson;
                 let result = [];
+                let thisIsOdd = false;
                 /**
                  * Number of lessons that have a positive satisfaction, but are not chosen due
                  * to constraints.
@@ -58,8 +63,20 @@
                 let impossibleLessons = [];
                 let output = {};
 
-                // Clone the list of lessons
-                let lessons = _.sortBy(this.lessons, function (l) {
+                // Step 0: Clone the list of lessons
+                let lessons = _.clone(this.lessons);
+
+                // If we have lessons from an odd semester, add them!
+                if (this.oddSemesterResults !== undefined) {
+                    // TODO: Too many hardcoded values
+                    _.each(this.oddSemesterResults.impossible["el"], function (l) {
+                        lessons.push(l);
+                    });
+                    thisIsOdd = true;
+                }
+
+                // Sort from best to worst
+                lessons = _.sortBy(lessons, function (l) {
                     return -l["satisfaction"];
                 });
 
@@ -85,6 +102,7 @@
                 // Step 2: Iterate from best to worst lesson
                 let lessonsLeft = Max_Lessons - result.length;
                 let freeLeft = Free_Lessons;
+                let oddLeft = Odd_Lessons;
                 // Lessons are sorted from awesome to terrible
                 for (let les in lessons) {
                     // Stop if we have no lessons left
@@ -96,21 +114,28 @@
                     }
 
                     if (lessonsLeft <= 0) {
-                        if (lesson.satisfaction > 0.01) {
-                            impossibleLessons.push(lesson);
-                        } else {
-                            break;
-                        }
+                        // TODO: Check for satisfaction removed to allow for odd semesters
+                        // if (lesson.satisfaction > 0.01) {
+                        impossibleLessons.push(lesson);
+                        // } else {
+                        //     break;
+                        // }
 
                         continue;
                     }
 
-                    if (lesson.status[this.alias] === "EE") {
+                    // TODO: Remove hardcoded value
+                    // Keeping the soft comparison, since semesters are strings for the time being
+                    if (lesson.semester == 7 && thisIsOdd) {
+                        if (oddLeft <= 0) continue;
+
+                        oddLeft--;
+                    } else if (lesson.status[this.alias] === "EE") {
                         // No more free lessons left
                         if (freeLeft <= 0) {
-                            if (lesson.satisfaction > 0.0) {
-                                impossibleLessons.push(lesson);
-                            }
+                            // if (lesson.satisfaction > 0.0) {
+                            impossibleLessons.push(lesson);
+                            // }
                             continue;
                         }
 

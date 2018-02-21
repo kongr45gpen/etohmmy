@@ -19,6 +19,7 @@
                                 :sector="sector"
                                 :alias="key"
                                 :key="idx"
+                                :odd-semester-results="oddSemesterResults"
                                 :results.sync="results[key]"
                 ></sector-results>
                 <!--</div>-->
@@ -28,6 +29,12 @@
                 {{ (maxSectors.length === 1) ? 'Καλύτερος Τομέας' : 'Καλύτεροι Τομείς' }}:
                 <!--<b><big>{{ $sectors[maxSector].short_name }}</big></b>-->
                 <b><big>{{ maxSectors.map(s => $sectors[s].short_name).join(', ') }}</big></b>
+            </p>
+
+            <p class="text-muted m-2" v-if="oddSemesterResults !== undefined">
+                <b>Σημείωση:</b> Λόγω έλλειψης καθηγητών, <em>συνήθως</em> οι φοιτητές του τομέα
+                Ηλεκτρονικής του 9<sup>ου</sup> εξαμήνου μπορούν να επιλέξουν 2 μαθήματα του
+                7<sup>ου</sup> εξαμήνου. <a href="http://ee.auth.gr/announcements/2017/10/12/8506/">Περισσότερες πληροφορίες&hellip;</a>
             </p>
         </div>
     </div>
@@ -54,6 +61,9 @@
             },
             resultout: {
                 required: true
+            },
+            oddSemesterResults: {
+                type: Object
             }
         },
         components: {
@@ -70,7 +80,8 @@
 
                 this.$emit('update:resultout', {
                     maxSectors: max,
-                    satisfaction: _.mapValues(this.results, x => x.satisfaction)
+                    satisfaction: _.mapValues(this.results, x => x.satisfaction),
+                    impossible: _.mapValues(this.results, x => x.impossible)
                 });
 
                 return max;

@@ -43,6 +43,7 @@
             <deselect :lessons="semesters"></deselect>
 
             <semester v-for="(lessons, semester, idx) in semesters" :lessons="lessons" :semester="semester" :key="idx"
+                      :odd-semester-results="(semester == 9) ? results[7] : undefined"
                       :resultout.sync="results[semester]"
             ></semester>
 

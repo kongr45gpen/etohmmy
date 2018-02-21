@@ -8,8 +8,8 @@
                         v-for="semester in semesters"
                         :class="results[semester].maxSectors.includes(skey) ? 'bg-' + sector.bootstrap_colour : ''">
                         <div class="row">
-                            <strong class="col-3">Εξάμηνο {{ semester }}</strong>
-                            <span class="col-5">
+                            <strong class="col-5 col-lg-3">Εξάμηνο {{ semester }}</strong>
+                            <span class="col-7 col-lg-5">
                                 <span :class="!results[semester].maxSectors.includes(skey) ? 'text-muted' : ''">Βαθμολογία:</span>
                                 <span class="badge badge-pill" :class="results[semester].maxSectors.includes(skey) ? 'badge-dark' : 'badge-secondary'">
                                     {{(results[semester].satisfaction[skey] !== undefined) ? results[semester].satisfaction[skey].toFixed(1) : 0.0}}
@@ -26,10 +26,10 @@
             </div>
         </div>
 
-        <div class="text-center m-4">
-            Τελική Επιλογή Τομέα:
-            <div class="card sector-final p-4" :class="[ 'bg-' + $sectors[maxSectors[0]].bootstrap_colour ]">
-                <span class="lead">Τομέας <strong>{{ maxSectors.map(s => $sectors[s].subtitle_name).join(', ') }}</strong></span>
+        <div class="text-center m-4 jumbotron">
+            <h2>Τελική Επιλογή Τομέα</h2>
+            <div class="card sector-final p-4 mt-2" :class="[ 'bg-' + $sectors[maxSectors[0]].bootstrap_colour ]">
+                <span class="lead sector-final-result">Τομέας <strong>{{ maxSectors.map(s => $sectors[s].subtitle_name).join(', ') }}</strong></span>
             </div>
 
             <p v-for="sector in badSectors" class="my-2">

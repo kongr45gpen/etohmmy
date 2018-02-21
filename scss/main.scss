@@ -248,4 +248,12 @@ $property-key-size: 35%;
 
 .sector-final {
     display: inline-block;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.sector-final-result {
+    font-size: 150%;
 }
