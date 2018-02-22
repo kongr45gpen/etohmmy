@@ -22,10 +22,10 @@
         <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">-->
             <!--<span class="navbar-toggler-icon"></span>-->
         <!--</button>-->
-        <div class="navbar-text nav-item mx-3" v-show="webpack_reload_count">
+        <div class="navbar-text nav-item mx-3" v-show="webpack_reload_count" v-cloak>
             {{ webpack_reload_count }} {{ webpack_reload_count === 1 ? "update" : "updates" }}
         </div>
-        <div class="form-inline my-2 my-lg-0 mx-2 nav-item" v-if="development">
+        <div class="form-inline my-2 my-lg-0 mx-2 nav-item" v-if="development" v-cloak>
             <button class="btn btn-outline-warning my-2 my-sm-0" @click="_.each(semesters,function(s) {_.each(s, function(l) { l.satisfaction = 20 * (Math.random()-0.5) } )})">Randomise</button>
         </div>
         <div class="form-inline my-2 my-lg-0 mx-2 nav-item">
@@ -41,7 +41,7 @@
             <h1>Βοηθός Επιλογής Τομέα ΗΜΜΥ</h1>
             <p class="lead">Καλώς ήλθατε στον Βοηθό Επιλογής Τομέα ΗΜΜΥ!</p>
 
-            <p>Για να χρησιμοποιήσετε τη σελίδα αυτή, πρέπει να καταχωρήσετε το βαθμό προτίμησής σας
+            <p v-cloak>Για να χρησιμοποιήσετε τη σελίδα αυτή, πρέπει να καταχωρήσετε το βαθμό προτίμησής σας
             για κάθε ένα από τα {{ activeLessons }} μαθήματα των τομέων. Η βαθμολογία <span class="badge badge-dark">-10</span>
             αντιστοιχεί σε μάθημα που δεν επιθυμείτε καθόλου να επιλέξετε, η βαθμολογία <span class="badge badge-dark">0</span>
             αντιστοιχεί σε αδιάφορο μάθημα, και η βαθμολογία <span class="badge badge-dark">10</span> αντιστοιχεί σε μάθημα
