@@ -84,6 +84,11 @@
                       :resultout.sync="results[semester]"
             ></semester>
 
+            <hr />
+            <p class="text-right">
+                <small class="text-muted">Πηγή πληροφοριών: <a href="https://qa.auth.gr/el/studyguide/20000050/current">qa.auth.gr</a></small>
+            </p>
+
             <h2>Συνολικά Αποτελέσματα</h2>
             <total-results :results="results" :semesters="_.keys(semesters)"></total-results>
         </div>
