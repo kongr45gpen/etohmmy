@@ -726,7 +726,6 @@ semesters:
           σχηματίζουν μαθηματικές αποδείξεις. 
     - name: Επιχειρησιακή Έρευνα
       qa: 'https://qa.auth.gr/el/class/1/600111467'
-      thmmy: 'https://www.thmmy.gr/smf/index.php?topic=65610.0'
       sector: el
       status:
         en: E
