@@ -41,7 +41,7 @@ Vue.prototype.$fakeSectors = Lessons["fake_sectors"];
 Vue.prototype.$MaxSatisfaction = Max_Satisfaction;
 Vue.prototype.$Total_Lessons = Total_Lessons;
 Vue.prototype.$Choice_Factors_Literature = _.shuffle(['καθηγητές','εργαστήρια','ωρολόγιο πρόγραμμα','παρέες','δυνατότητες για διπλωματική',
-    'απόψεις από το thmmy','υπάρχον υλικό για τα μαθήματα','επισκέψεις στις παραδόσεις',
+    'απόψεις από το thmmy','υπάρχον υλικό για τα μαθήματα','επισκέψεις στις παραδόσεις', 'διαθέσιμα συγγράμματα',
     'συγκρούσεις ωρών μαθημάτων']).join(', ');
 Vue.prototype.$getSatisfactionToColour = function(saturation = 1, brightness = 1, opacity = 1, override = false) {
     const maxValue = 255.0 * brightness;
