@@ -71,6 +71,7 @@ Vue.prototype.$getSatisfactionToColour = function(saturation = 1, brightness = 1
 let app = new Vue({
     el: '#app',
     data: {
+        development: process.env.NODE_ENV === 'development',
         semesters: Lessons["semesters"],
         results: {},
         webpack_reload_count: 0

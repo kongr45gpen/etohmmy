@@ -36,7 +36,7 @@
     "vue-template-compiler": "^2.5.13"
   },
   "scripts": {
-    "webpack": "webpack --config webpack.config.js",
+    "webpack": "NODE_ENV=production webpack --config webpack.config.js",
     "webpack-watch": "webpack --config webpack.config.js --watch",
     "start": "webpack-dev-server --config webpack.config.js --host 0.0.0.0",
     "server": "webpack-dev-server --config webpack.config.js --host 0.0.0.0 --open",

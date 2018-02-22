@@ -26,6 +26,9 @@
             {{ webpack_reload_count }} {{ webpack_reload_count === 1 ? "update" : "updates" }}
         </div>
         <div class="form-inline my-2 my-lg-0 mx-2 nav-item">
+            <button class="btn btn-outline-warning my-2 my-sm-0" @click="_.each(semesters,function(s) {_.each(s, function(l) { l.satisfaction = 20 * (Math.random()-0.5) } )})">Randomise</button>
+        </div>
+        <div class="form-inline my-2 my-lg-0 mx-2 nav-item">
             <a class="btn btn-outline-secondary my-2 my-sm-0" href="https://github.com/kongr45gpen/etohmmy">Source Code @ Github</a>
         </div>
         <div class="form-inline my-2 my-lg-0 mx-2 nav-item">

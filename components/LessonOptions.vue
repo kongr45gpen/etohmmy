@@ -3,8 +3,10 @@
        v-bind:style="{ backgroundColor: colour }"
        v-bind:class="(lesson.deselected && lesson.satisfaction === -10) ? 'lesson-list-item-deselected' : ''"
        v-bind:data-target="'#' + collapsibleId"
-       data-toggle="collapse"
+       onclick=""
+    data-toggle="collapse"
     >
+        <!-- onclick="" Workaround for iOS not registering click events-->
         <div class="d-flex w-100 justify-content-between align-items-center"
 
         >
