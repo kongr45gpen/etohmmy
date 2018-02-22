@@ -71,8 +71,7 @@ let onCourseVisited = function($, path) {
 
     const description = {
         syllabus: $("#course-elem-course-content-syllabus .value").text(),
-        outcomes: $("#course-elem-learning-outcomes .value").text(),
-        skills:   $("#course-elem-general-competences .value, #course-elem-general-competences ul").text(),
+        outcomes: $("#course-elem-learning-outcomes .value").text()
     };
 
     attribs = {
