@@ -28,7 +28,6 @@ SECTOR COLOURS
 
         :after {
             content: #{$primary};
-            @debug "Sorry, but `#{$grid-breakpoints}` is not a valid value for $variable.";
         }
     }
 
