@@ -106,8 +106,12 @@ SECTOR COLOURS
 }
 
 .lesson-list-item {
+    $Shadow-Size: 7px;
+
     padding: 0.2rem;
     font-size: 0.8rem;
+
+    box-shadow: 0 2px $Shadow-Size -#{$Shadow-Size} rgba(0,0,0, 0.3) inset;
 
     &>.d-flex {
         @include media-breakpoint-down(xs) {
