@@ -74,14 +74,14 @@
 
                 <div class="row no-gutters" v-if="lesson.qa !== undefined">
                     <strong class="lesson-property-key">Πληροφορίες</strong>
-                    <span class="lesson-property-value">
+                    <span class="lesson-property-value lesson-property-protect">
                         <a :href="lesson.qa">{{  lesson.qa  }}</a>
                     </span>
                 </div>
 
                 <div class="row no-gutters" v-if="lesson.thmmy !== undefined">
                     <strong class="lesson-property-key">Συζήτηση</strong>
-                    <span class="lesson-property-value">
+                    <span class="lesson-property-value lesson-property-protect">
                         <a :href="lesson.thmmy">{{  lesson.thmmy  }}</a>
                     </span>
                 </div>
@@ -95,7 +95,7 @@
                 <!--</div>-->
 
                 <div class="row no-gutters align-items-center">
-                    <strong class="lesson-property-key">Βαθμολογία</strong>
+                    <strong class="lesson-property-key lesson-property-protect">Βαθμολογία</strong>
                     <span class="lesson-property-value d-flex align-items-center">
                         <input title="Βαθμολογία" class="lesson-aux-satisfaction" type="range" min="-10" max="10" step="0.01" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
                         <a class="btn btn-outline-light border-danger lesson-aux-reset btn-sm"

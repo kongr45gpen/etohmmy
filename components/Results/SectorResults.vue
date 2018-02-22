@@ -56,8 +56,7 @@
                 let result = [];
                 let thisIsOdd = false;
                 /**
-                 * Number of lessons that have a positive satisfaction, but are not chosen due
-                 * to constraints.
+                 * Lessons that are not chosen due to constraints
                  * @type {Array}
                  */
                 let impossibleLessons = [];

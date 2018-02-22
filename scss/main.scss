@@ -1,6 +1,7 @@
 @import "custom";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+@import "mixins";
 @import "smiley";
 
 $Sector-Colours: (
@@ -64,20 +65,30 @@ SECTOR COLOURS
     .list-group-item {
         font-size: 95%;
 
-        .flex-fill {
-            @include media-breakpoint-up(xl) {
-                //text-overflow: ellipsis;
-                //overflow: hidden;
-                //white-space: nowrap;
+        @include media-breakpoint-down(xs) {
+            font-size: 85%;
+        }
 
-                //direction: rtl;
-                text-align: left;
-            }
+        .flex-fill {
+            //@include media-breakpoint-up(xl) {
+            //    @include ellipses;
+            //    direction: rtl;
+            //    text-align: left;
+            //}
         }
 
         .badge {
             margin-left: 0.3rem;
         }
+    }
+}
+
+
+.result-other-lessons {
+    font-size: 90%;
+
+    @include media-breakpoint-down(xs) {
+        font-size: 80%;
     }
 }
 
@@ -97,13 +108,31 @@ SECTOR COLOURS
 .lesson-list-item {
     padding: 0.2rem;
     font-size: 0.8rem;
+
+    &>.d-flex {
+        @include media-breakpoint-down(xs) {
+            padding-left: 0.5 * $spacer;
+            padding-right: 0.5 * $spacer;
+
+            &>* {
+                padding-left: 0.5 * $spacer;
+                padding-right: 0.5 * $spacer;
+
+                hyphens: auto;
+            }
+        }
+
+
+    }
 }
 
 .lesson-list-range {
     margin-right: 0;
+
     @include media-breakpoint-up(sm) {
         margin-right: $spacer;
     }
+
     //height: 0.5rem;
     input {
         vertical-align: middle;
@@ -195,6 +224,10 @@ $property-key-size: 35%;
     width: (100% - $property-key-size);
 }
 
+.lesson-property-protect {
+    @include ellipses;
+}
+
 .lesson-professors {
     @include media-breakpoint-down(lg) {
         white-space: nowrap;
@@ -243,11 +276,6 @@ $property-key-size: 35%;
             width: 30%;
         }
     }
-
-}
-
-.result-other-lessons {
-    font-size: 90%;
 }
 
 .lesson-list-item-deselected {

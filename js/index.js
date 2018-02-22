@@ -10,7 +10,7 @@ import './mixins.js'
 
 
 // CSS & HTML updating
-import '../css/main.css'
+import '../dist/main.css'
 import '../index.html'
 
 const Max_Satisfaction = 10;
