@@ -251,6 +251,10 @@ $property-key-size: 35%;
     width: 100%;
     flex: 1 1 auto;
     margin-right: $spacer;
+
+    @include media-breakpoint-down(xl) {
+        margin-right: 0.4rem;
+    }
 }
 
 .tooltip {

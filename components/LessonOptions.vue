@@ -100,11 +100,14 @@
                     <strong class="lesson-property-key lesson-property-protect">Βαθμολογία</strong>
                     <span class="lesson-property-value d-flex align-items-center">
                         <input title="Βαθμολογία" class="lesson-aux-satisfaction" type="range" min="-10" max="10" step="0.01" v-model.number="lesson.satisfaction" v-on:change="changeCompleted">
-                        <a class="btn btn-outline-light border-danger lesson-aux-reset btn-sm"
-                           v-on:click="lesson.satisfaction = 0; changeCompleted();">
-                            <span class="d-none d-sm-inline">Reset</span>
-                            <span class="d-sm-none"><font-awesome-icon :icon="faReply"></font-awesome-icon></span>
-                        </a>
+                        <div class="btn-group btn-group-sm mt-1">
+                            <div class="btn btn-outline-dark border-dark">{{ lesson.satisfaction.toFixed(1) }}</div>
+                            <a class="btn btn-outline-danger lesson-aux-reset"
+                               v-on:click="lesson.satisfaction = 0; changeCompleted();">
+                                <span class="d-none d-sm-inline">Reset</span>
+                                <span class="d-sm-none"><font-awesome-icon :icon="faReply"></font-awesome-icon></span>
+                            </a>
+                        </div>
                     </span>
                 </div>
             </div>
