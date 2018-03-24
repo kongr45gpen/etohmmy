@@ -55,6 +55,8 @@
                     // Disabled sector has been deactivated
                     this.offSector = null;
 
+                    window.localStorage.setItem("etohmmy.off_sector", null);
+
                     // De-negative all lessons
                     restoreAllLessons(this.lessons);
                 } else {
