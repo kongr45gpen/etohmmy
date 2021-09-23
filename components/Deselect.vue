@@ -67,7 +67,7 @@
                     // Set all lessons to -10
                     _.each(this.lessons, function(s, semester) {
                         _.each(s, function(l, lkey) {
-                            if (l.sector === sector) {
+                            if (l.status[sector] === "ET" || l.status[sector] === "Y") {
                                 l.satisfaction = -10;
                                 l.deselected =  true;
                             }
