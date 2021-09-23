@@ -12,7 +12,7 @@ const yaml = require('js-yaml');
 require('pretty-error').start();
 
 commander
-    .arguments('<file>').action(file => commander.file = file)
+    .arguments('<file>').description("Path to the stripped HTML of the lesson list (only the lesson table)").action(file => commander.file = file)
     .parse(process.argv);
 
 if (commander.file === undefined) throw new Error("Invalid arguments. Use the --help option to see usage information for this script.");
@@ -78,6 +78,7 @@ let onCourseVisited = function($, path) {
         code: rawAttribs["Class ID"],
         humanCode: rawAttribs["Κωδικός"],
         originalTitle: rawAttribs["Τίτλος"],
+        name: rawAttribs["Τίτλος"],
         ects: parseInt(ects),
         status: {},
         qa: path,
@@ -90,18 +91,22 @@ let onCourseVisited = function($, path) {
         let sector = sectorAttribs[i];
         let sc, status;
         switch (sector.name) {
-            case 'Ηλεκτρικής Ενέργειας':
+            case 'ΗΛΕΚΤΡΙΚΗΣ ΕΝΕΡΓΕΙΑΣ':
                 sc = 'en';
                 break;
-            case 'Ηλεκτρονικής και Υπολογιστών':
+            case 'ΗΛΕΚΤΡΟΝΙΚΗΣ ΚΑΙ ΥΠΟΛΟΓΙΣΤΩΝ':
                 sc = 'el';
                 break;
-            case 'Τηλεπικοινωνιών':
+            case 'ΤΗΛΕΠΙΚΟΙΝΩΝΙΩΝ':
                 sc = 'tel';
                 break;
+            case 'ΚΟΡΜΟΣ':
+            case 'Κορμός':
+                console.debug("Skipping generic sector" + " ("  +attribs.originalTitle + ")")
+                continue;
             default:
                 sc = 'wat';
-                console.error("Unknown sector " + sector.name + "!");
+                console.error("Unknown sector " + sector.name + "!" + " ("  +attribs.originalTitle + ")");
         }
         switch (sector.status) {
             case 'Υποχρεωτικό':
@@ -115,7 +120,7 @@ let onCourseVisited = function($, path) {
                 break;
             default:
                 status = '??';
-                console.error("Unknown status " + sector.status + "!");
+                console.error("Unknown status " + sector.status + "!" + " ("  +attribs.originalTitle + ")");
         }
         attribs.status[sc] = status;
         semesterSet.add(parseInt(sector.semester));
@@ -125,6 +130,7 @@ let onCourseVisited = function($, path) {
         // Get the possible prefixes of property names that correspond to professors
         if (_.startsWith(what, 'Υπεύθυν') || _.startsWith(what, 'Διδάσκ')) {
             rawAttribs[what].split(/[,\n\t]+/g).forEach(function (professor) {
+                professor = professor.replace(/[0-9]+ωρ/i, '') // Remove duration tags
                 attribs.professors.add(professor.trim());
             });
         }
@@ -147,7 +153,7 @@ let onCourseVisited = function($, path) {
         });
 
         if (datum !== undefined) {
-            console.info("Adding lesson " + attribs.originalTitle + " to semester " + semester, "(" + datum.name + ")");
+            console.info("Updating lesson " + attribs.originalTitle + " to semester " + semester, "(" + datum.name + ")");
             // Update the existing entry, keeping old elements
         } else {
             console.info("Adding lesson " + attribs.originalTitle + " to semester " + semester);
@@ -169,7 +175,7 @@ $("a").each(function(i, elem) {
 
         // TODO: Throttle
         promises.push(new Promise(function(resolve, reject) {
-            onCourseLink('https://qa.auth.gr' + href, resolve, reject);
+           onCourseLink('https://qa.auth.gr' + href, resolve, reject);
         }));
     }
 });
@@ -177,6 +183,11 @@ $("a").each(function(i, elem) {
 console.log("Waiting for " + promises.length + " links...");
 
 Promise.all(promises).then(function() {
+    // Sort lessons by name (Note: This may be dangerous if localStorage is not reset)
+    for (let semester in existingConfig.semesters) {
+        existingConfig.semesters[semester].sort((a, b) => a.originalTitle.toLowerCase() > b.originalTitle.toLowerCase() ? 1 : -1);
+    }
+
    console.info("All done.");
    fs.writeFileSync(require('path').resolve(__dirname, '../data/lessons.yml'), yaml.dump(existingConfig, {
        noCompatMode: true,
