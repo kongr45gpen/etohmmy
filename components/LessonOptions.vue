@@ -65,7 +65,8 @@
                                     <div class="btn btn-dark border-dark">{{ sector.short_name }}</div>
 
                                     <div class="btn btn-warning border-dark" v-if="lesson.status[key] === 'Y'">Υποχρεωτικό</div>
-                                    <div class="btn btn-primary border-dark" v-else-if="lesson.status[key] === 'E'">Επιλογής</div>
+                                    <div class="btn btn-primary border-dark" v-else-if="lesson.status[key] === 'ET'">Επιλογής (Τομέα)</div>
+                                    <div class="btn btn-secondary border-dark" v-else-if="lesson.status[key] === 'E'">Επιλογής</div>
                                     <div class="btn btn-secondary border-dark" v-else-if="lesson.status[key] === 'EE'">Ελεύθ. Επιλ.</div>
                                     <div class="btn btn-light border-dark" v-else><span class="px-4"></span></div>
                                 </div>
