@@ -245,7 +245,7 @@
                     let loops = 0;
                     while (true) {
                         // Step 2.1: Find if ECTS condition is OK
-                        let ectsSum = _.reduce(selectedLessonIds[n], (ects, lesson) => ects + lessons[lesson]["ects"])
+                        let ectsSum = _.reduce(selectedLessonIds[n], (ects, lesson) => ects + parseFloat(lessons[lesson]["ects"]), 0)
 
                         if (ectsSum >= minEcts) {
                             break;
