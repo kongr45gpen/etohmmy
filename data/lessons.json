@@ -588,9 +588,9 @@
         "originalTitle": "Αρχές Οικονομίας (ΔΟΝΑ)",
         "ects": 5,
         "status": {
-          "en": "ET",
-          "el": "ET",
-          "tel": "ET"
+          "en": "E",
+          "el": "E",
+          "tel": "E"
         },
         "qa": "https://qa.auth.gr/el/class/1/600198798",
         "professors": [
@@ -1567,9 +1567,9 @@
         "originalTitle": "Οργάνωση και Διοίκηση Εργοστασίων (ΔΟΝΑ)",
         "ects": 4,
         "status": {
-          "en": "ET",
-          "el": "ET",
-          "tel": "ET"
+          "en": "E",
+          "el": "E",
+          "tel": "E"
         },
         "qa": "https://qa.auth.gr/el/class/1/600196686",
         "professors": [
