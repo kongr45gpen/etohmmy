@@ -1035,8 +1035,8 @@
         "originalTitle": "Σταθμοί Παραγωγής Ηλεκτρικής Ενέργειας",
         "ects": 4,
         "status": {
-          "en": "E",
-          "el": "ET",
+          "en": "ET",
+          "el": "E",
           "tel": "E"
         },
         "qa": "https://qa.auth.gr/el/class/1/600198741",
