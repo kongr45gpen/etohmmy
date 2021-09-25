@@ -251,6 +251,8 @@
                     // Step 1: Add the lessons with maximum score
                     let i = 0;
                     for (let lessonId in lessons) {
+                        lessonId = parseInt(lessonId);
+
                         if (i >= n) {
                             break;
                         }
@@ -281,7 +283,6 @@
                         //TODO: FIX REVERSE INDEX
                         // Step 2.2: Find the worst lesson with the lowest ECTS
                         let worstLesson = null;
-                        // console.log(_.reverse(selectedLessonIds[n]));
                         for (const [lessonIndex, lessonId] of Object.entries(_.reverse(selectedLessonIds[n]))) {
                             if (worstLesson === null) {
                                 worstLesson = lessonIndex;

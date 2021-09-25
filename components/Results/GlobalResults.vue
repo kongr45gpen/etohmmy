@@ -21,15 +21,28 @@
         props: {
             semesters: {
                 type: Object,
-                required: true
+                required: true,
             },
             results: {
                 type: Object
             }
         },
-        computed: {
-            update: function() {
+        watch: {
+            semesters: {
+                deep: true,
+                immediate: true,
+                handler() {
+                    // Throttle the update function so that we don't overwhelm the user's CPU
+                    if (this.throttledUpdate === undefined) {
+                        this.throttledUpdate = _.throttle(this.update, 200, { trailing: true });
+                    }
 
+                    this.throttledUpdate();
+                }
+            }
+        },
+        methods: {
+            update: function() {
                 let results = {}
 
                 const optimiseLessons = SectorResults.methods.optimiseLessons;
@@ -59,7 +72,10 @@
 
                     // Gather all lessons of this sector
                     let allLessons = Object.values(this.semesters).flat(1);
-                    allLessons = _.sortBy(allLessons, l => -l["satisfaction"]);
+                    allLessons = _.sortBy(allLessons, [
+                        l => -l["satisfaction"],
+                        l => l["name"] // Secondary sort by name so we don't gather all lessons by semester
+                    ]);
 
                     // Sorted IDs of lessons that have not been used
                     let unusedLessons = [...allLessons.keys()];
@@ -105,8 +121,6 @@
                                     return _.sumBy(lessons, l => l.score) / _.sumBy(lessons, l => l.ects);
                                 }
                             )
-
-                            console.log(optimisedLessons.length);
 
                             for (const lesson of optimisedLessons) {
                                 lesson.reason = "ET";
@@ -246,7 +260,7 @@
 
                 this.$emit('update:results', results);
 
-                return _.map(results, s => _.map(s, s => _.map(s, l => l.name)));
+                // return _.map(results, s => _.map(s, s => _.map(s, l => l.name)));
             }
         }
     }

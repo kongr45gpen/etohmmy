@@ -60,9 +60,13 @@
                 που εσείς θεωρείτε σημαντικούς, όπως <span style="display: none;" :style="{display: 'inline'}">
                 {{ $Choice_Factors_Literature }}, &hellip;</span></p>
 
-                <p class="m-0">Τα εμφανιζόμενα μαθήματα βασίζονται στο πρόγραμμα σπουδών 2017-18. Είναι πολύ πιθανό αργότερα
+                <p class="m-0">Τα εμφανιζόμενα μαθήματα βασίζονται στο πρόγραμμα σπουδών 2021-22. Είναι πολύ πιθανό αργότερα
                 μαθήματα μεγαλύτερων εξαμήνων να αφαιρεθούν ή να προστεθούν, ανάλογα με τη διαθεσιμότητα
                 των καθηγητών.</p>
+
+                <p class="m-0">Ο υπολογισμός λαμβάνει υπ' όψιν το γεγονός πως δεν υπάρχει όριο μαθημάτων <em>ανά εξάμηνο</em>,
+                αλλά <em>συνολικά</em>. Το 7ο και 9ο εξάμηνο είναι ομαδοποιημένα και γίνεται αυθαίρετη επιλογή μαθημάτων από
+                αυτά.</p>
 
                 <p class="m-0">Επίσης, η εφαρμογή βρίσκεται ακόμα σε <strong>alpha έκδοση</strong>, οπότε είναι
                 πολύ πιθανό να υπάρχουν <strong>λάθη</strong> και ελλείψεις στα μαθήματα και τους υπολογισμούς.</p>
@@ -82,7 +86,7 @@
             </p>
             <deselect :lessons="semesters"></deselect>
 
-            <global-results :results.sync="globalResults" :semesters="semesters"></global-results>
+            <global-results :results.sync="globalResults" @semesters="console.log(update)" :semesters="semesters"></global-results>
 
             <semester v-for="(lessons, semester, idx) in semesters" :lessons="lessons" :semester="semester" :key="idx"
                       :odd-semester-results="undefined"
