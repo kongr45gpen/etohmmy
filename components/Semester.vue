@@ -16,10 +16,12 @@
                 <!--<div class="col-md">-->
                 <sector-results v-for="(sector, key, idx) in $sectors"
                                 :lessons="lessons"
+                                :semester="parseInt(semester)"
                                 :sector="sector"
                                 :alias="key"
                                 :key="idx"
                                 :odd-semester-results="oddSemesterResults"
+                                :global-results="globalResults"
                                 :results.sync="results[key]"
                 ></sector-results>
                 <!--</div>-->
@@ -63,6 +65,9 @@
                 required: true
             },
             oddSemesterResults: {
+                type: Object
+            },
+            globalResults: {
                 type: Object
             }
         },

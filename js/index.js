@@ -6,6 +6,7 @@ import Lessons from '../data/lessons.json'
 import Deselect from '../components/Deselect.vue'
 import Semester from '../components/Semester.vue'
 import TotalResults from '../components/Results/TotalResults.vue'
+import GlobalResults from '../components/Results/GlobalResults.vue'
 import './mixins.js'
 
 
@@ -74,6 +75,7 @@ let app = new Vue({
         development: process.env.NODE_ENV === 'development',
         semesters: Lessons["semesters"],
         results: {},
+        globalResults: {},
         webpack_reload_count: 0
     },
     computed: {
@@ -85,7 +87,7 @@ let app = new Vue({
         }
     },
     components: {
-        Semester, TotalResults, Deselect
+        GlobalResults, Semester, TotalResults, Deselect
     },
     mounted() {
         this.$nextTick(function() {

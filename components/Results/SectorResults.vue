@@ -50,152 +50,173 @@
             },
             oddSemesterResults: {
                 type: Object
+            },
+            globalResults: {
+                type: Object
+            },
+            semester: {
+                type: Number,
+                required: true
             }
         },
         components: {LessonResults},
         computed: {
             results: function () {
-                let lesson;
-                let result = [];
-                let thisIsOdd = false;
-                /**
-                 * Lessons that are not chosen due to constraints
-                 * @type {Array}
-                 */
+                // let lesson;
+                // let result = [];
+                // let thisIsOdd = false;
+                // /**
+                //  * Lessons that are not chosen due to constraints
+                //  * @type {Array}
+                //  */
                 let impossibleLessons = [];
                 let output = {};
 
-                // Step 0: Clone the list of lessons
-                let lessons = _.clone(this.lessons);
+                // // Step 0: Clone the list of lessons
+                // let lessons = _.clone(this.lessons);
 
-                // If we have lessons from an odd semester, add them!
-                if (false && this.oddSemesterResults !== undefined && this.alias === "el") {
-                    // TODO: Too many hardcoded values
-                    _.each(this.oddSemesterResults.impossible["el"], function (l) {
-                        lessons.push(l);
-                    });
-                    thisIsOdd = true;
+                let results = {}
+
+
+                if (this.globalResults[this.alias] !== undefined) {
+                    // We have non-semester-specific results to add
+                    results = this.globalResults[this.alias]["chosen"][this.semester];
+                    impossibleLessons = this.globalResults[this.alias]["impossible"][this.semester];
                 }
 
-                // Sort from best to worst
-                lessons = _.sortBy(lessons, function (l) {
-                    return -l["satisfaction"];
-                });
 
-                // Step 1: Get the necessary lessons
-                let i = lessons.length;
-                while (i-- > 0) {
-                    lesson = lessons[i];
+                // // If we have lessons from an odd semester, add them!
+                // if (false && this.oddSemesterResults !== undefined && this.alias === "el") {
+                //     // TODO: Too many hardcoded values
+                //     _.each(this.oddSemesterResults.impossible["el"], function (l) {
+                //         lessons.push(l);
+                //     });
+                //     thisIsOdd = true;
+                // }
 
-                    if (lesson.status[this.alias] === "Y") {
-                        // Add the lesson to the list
-                        lesson.reason = "Y";
-                        result.push(lesson);
+                // // Sort from best to worst
+                // lessons = _.sortBy(lessons, function (l) {
+                //     return -l["satisfaction"];
+                // });
 
-                        // Remove the lesson
-                        lessons.splice(i, 1);
-                    }
-                }
+                // // Step 1: Get the necessary lessons
+                // let i = lessons.length;
+                // while (i-- > 0) {
+                //     lesson = lessons[i];
 
-                // Necessary lessons should be sorted alphabetically
-                result.sort(function (a, b) {
-                    return a.name > b.name;
-                });
+                //     if (lesson.status[this.alias] === "Y") {
+                //         // Add the lesson to the list
+                //         lesson.reason = "Y";
+                //         result.push(lesson);
 
-                if (this.sector.ects_per_semester !== undefined) {
-                    // Step 1.1.1: Filter ET lessons only
-                    const allSectorLessons = _.filter(lessons, l => l.status[this.alias] === "ET");
+                //         // Remove the lesson
+                //         lessons.splice(i, 1);
+                //     }
+                // }
 
-                    // Step 1.1.2: Add a score to each lesson
-                    for (const lessonId in allSectorLessons) {
-                        allSectorLessons[lessonId]["score"] = allSectorLessons[lessonId]["satisfaction"] / allSectorLessons[lessonId]["ects"];
-                    }
+                // // Necessary lessons should be sorted alphabetically
+                // result.sort(function (a, b) {
+                //     return a.name > b.name;
+                // });
 
-                    // Step 1.1.3: Optimize
-                    const sectorLessons = this._optimiseLessons(allSectorLessons, this.sector.ects_per_semester, 3, 5, function(lessons) {
-                        return _.sumBy(l => l["score"]) / _.sumBy(l => l["ects"]);
-                    });
+                // if (this.sector.ects_per_semester !== undefined) {
+                //     // Step 1.1.1: Filter ET lessons only
+                //     const allSectorLessons = _.filter(lessons, l => l.status[this.alias] === "ET");
 
-                    // Step 1.1.4: Push added lessons to the results
-                    for (lesson of sectorLessons) {
-                        lesson.reason = "ET";
-                        result.push(lesson);
-                    }
+                //     // Step 1.1.2: Add a score to each lesson
+                //     for (const lessonId in allSectorLessons) {
+                //         allSectorLessons[lessonId]["score"] = allSectorLessons[lessonId]["satisfaction"] / allSectorLessons[lessonId]["ects"];
+                //     }
 
-                    // Step 1.1.4: Remove lessons from further selection
-                    const bannedCodes = _.map(sectorLessons, l => l.code)
-                    lessons = lessons.filter(l => !_.includes(bannedCodes, l.code));
-                }
+                //     // Step 1.1.3: Optimize
+                //     const sectorLessons = this.optimiseLessons(allSectorLessons, this.sector.ects_per_semester, 3, 5, function(lessons) {
+                //         return _.sumBy(l => l["score"]) / _.sumBy(l => l["ects"]);
+                //     });
 
-                // Step 2: Iterate from best to worst lesson
-                let lessonsLeft = Max_Lessons - result.length;
-                let freeLeft = Free_Lessons;
-                let oddLeft = Odd_Lessons;
-                // Lessons are sorted from awesome to terrible
-                for (let les in lessons) {
-                    // Stop if we have no lessons left
-                    lesson = lessons[les];
+                //     // Step 1.1.4: Push added lessons to the results
+                //     for (lesson of sectorLessons) {
+                //         lesson.reason = "ET";
+                //         result.push(lesson);
+                //     }
 
-                    if (lesson.status[this.alias] === undefined) {
-                        // Oops! Can't pick that lesson!
-                        continue;
-                    }
+                //     // Step 1.1.4: Remove lessons from further selection
+                //     const bannedCodes = _.map(sectorLessons, l => l.code)
+                //     lessons = lessons.filter(l => !_.includes(bannedCodes, l.code));
+                // }
 
-                    if (lessonsLeft <= 0) {
-                        // TODO: Check for satisfaction removed to allow for odd semesters
-                        // if (lesson.satisfaction > 0.01) {
-                        impossibleLessons.push(lesson);
-                        // } else {
-                        //     break;
-                        // }
+                // // Step 2: Iterate from best to worst lesson
+                // let lessonsLeft = Max_Lessons - result.length;
+                // let freeLeft = Free_Lessons;
+                // let oddLeft = Odd_Lessons;
+                // // Lessons are sorted from awesome to terrible
+                // for (let les in lessons) {
+                //     // Stop if we have no lessons left
+                //     lesson = lessons[les];
 
-                        continue;
-                    }
+                //     if (lesson.status[this.alias] === undefined) {
+                //         // Oops! Can't pick that lesson!
+                //         continue;
+                //     }
 
-                    // TODO: Remove hardcoded value
-                    // Keeping the soft comparison, since semesters are strings for the time being
-                    if (lesson.semester == 7 && thisIsOdd) {
-                        if (oddLeft <= 0) continue;
+                //     if (lessonsLeft <= 0) {
+                //         // TODO: Check for satisfaction removed to allow for odd semesters
+                //         // if (lesson.satisfaction > 0.01) {
+                //         impossibleLessons.push(lesson);
+                //         // } else {
+                //         //     break;
+                //         // }
 
-                        oddLeft--;
-                    } else if (lesson.status[this.alias] === "EE") {
-                        // No more free lessons left
-                        if (freeLeft <= 0) {
-                            // if (lesson.satisfaction > 0.0) {
-                            impossibleLessons.push(lesson);
-                            // }
-                            continue;
-                        }
+                //         continue;
+                //     }
 
-                        freeLeft--;
-                    }
+                //     // TODO: Remove hardcoded value
+                //     // Keeping the soft comparison, since semesters are strings for the time being
+                //     if (lesson.semester == 7 && thisIsOdd) {
+                //         if (oddLeft <= 0) continue;
 
-                    lesson.reason = "E";
-                    result.push(lesson);
-                    lessonsLeft--;
-                }
+                //         oddLeft--;
+                //     } else if (lesson.status[this.alias] === "EE") {
+                //         // No more free lessons left
+                //         if (freeLeft <= 0) {
+                //             // if (lesson.satisfaction > 0.0) {
+                //             impossibleLessons.push(lesson);
+                //             // }
+                //             continue;
+                //         }
 
-                output["chosen"] = result;
+                //         freeLeft--;
+                //     }
+
+                //     lesson.reason = "E";
+                //     result.push(lesson);
+                //     lessonsLeft--;
+                // }
+
+                output["chosen"] = results;
                 output["impossible"] = impossibleLessons;
 
-                // Step 3: Calculate statistics
-                output["satisfaction"] = _.reduce(result, function (value, lesson) {
-                    return value + lesson["satisfaction"]
-                }, 0);
+                // // Step 3: Calculate statistics
+                // output["satisfaction"] = _.reduce(result, function (value, lesson) {
+                //     return value + lesson["satisfaction"]
+                // }, 0);
 
-                output["ects_sector"] = _.reduce(result, (value, lesson) => {
-                    const sector = lesson.status[this.alias];
-                    // Differentiate between lessons of this sector
-                    if (sector == "Y" || sector == "ET") {
-                        return value + lesson["ects"];
-                    } else {
-                        return value;
-                    }
-                }, 0);
+                // output["ects_sector"] = _.reduce(result, (value, lesson) => {
+                //     const sector = lesson.status[this.alias];
+                //     // Differentiate between lessons of this sector
+                //     if (sector == "Y" || sector == "ET") {
+                //         return value + lesson["ects"];
+                //     } else {
+                //         return value;
+                //     }
+                // }, 0);
 
-                output["ects_total"] = _.reduce(result, function (value, lesson) {
-                    return value + lesson["ects"]
-                }, 0);
+                output["ects_sector"] = _.sumBy(results, l => ((l.status[this.alias] == "Y" || l.status[this.alias] == "ET") ? l.ects : 0));
+                output["ects_total"] = _.sumBy(results, l => l.ects);
+                output["satisfaction"] = _.sumBy(results, l => l.satisfaction);
+
+                // output["ects_total"] = _.reduce(result, function (value, lesson) {
+                //     return value + lesson["ects"]
+                // }, 0);
 
                 // Emit the update event for the parent Vue component
                 this.$emit('update:results', output);
@@ -209,14 +230,14 @@
              * so that at least minEcts are attained. Note: This supposes that a `score` attribute
              * exists for each lesson.
              */
-            _optimiseLessons(lessons, minEcts, minLessonCount, maxLessonCount, globalScoreCallback) {
+            optimiseLessons(lessons, minEcts, minLessonCount, maxLessonCount, globalScoreCallback) {
                 let selectedLessonIds = {}
 
                 if (lessons.length <= 0) return [];
 
                 // Append original ID to lessons since it might get lost after sorting
                 for (const lessonId in lessons) {
-                    lessons[lessonId]["originalId"] = lessonId;
+                    lessons[lessonId]["optimiseId"] = lessonId;
                 }
 
                 // Sort all lessons based on their score, maybe this will improve complexity
@@ -229,7 +250,7 @@
 
                     // Step 1: Add the lessons with maximum score
                     let i = 0;
-                    for (const lessonId in lessons) {
+                    for (let lessonId in lessons) {
                         if (i >= n) {
                             break;
                         }
@@ -251,14 +272,16 @@
                             break;
                         }
 
-                        if (loops > 100) {
+                        if (loops++ > 100) {
                             console.error("Could not optimise lessons for N = " + n);
                             selectedLessonIds[n] = undefined;
                             break;
                         }
 
+                        //TODO: FIX REVERSE INDEX
                         // Step 2.2: Find the worst lesson with the lowest ECTS
                         let worstLesson = null;
+                        // console.log(_.reverse(selectedLessonIds[n]));
                         for (const [lessonIndex, lessonId] of Object.entries(_.reverse(selectedLessonIds[n]))) {
                             if (worstLesson === null) {
                                 worstLesson = lessonIndex;
@@ -271,7 +294,7 @@
                         // Start measuring from top (best) to bottom
 
                         let replacementLesson = null;
-                        for (const lessonId of selectedLessonIds[n]) {
+                        for (let lessonId of selectedLessonIds[n]) {
                             if (lessons[lessonId]["used"] !== undefined) {
                                 // Lesson has been tested/added/removed before, skip
                                 continue;
@@ -309,7 +332,7 @@
                         continue;
                     }
 
-                    let globalScore = globalScoreCallback(_.map(selectedLessonIds, (id) => lessons[id]))
+                    let globalScore = globalScoreCallback(_.map(selectedLessonIds[n], (id) => lessons[id]))
 
                     if (bestNscore === null || bestNscore < globalScore) {
                         bestN = n;
