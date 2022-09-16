@@ -2832,7 +2832,7 @@ semesters:
           2. Ανάλυση επίδοσης των κωδίκων αυτών.
       name: Κώδικες Διόρθωσης Σφαλμάτων
     - code: ''
-      humanCode: 
+      humanCode: 132 
       originalTitle: Μηχανική Λογισμικού ΙΙ
       ects: 5
       status:
